@@ -6,21 +6,20 @@
 #    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/06/12 19:21:54 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2023/06/15 15:48:19 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 #===================================SOURCES====================================#
-SRC = get_next_line.c	main.c
+SRC = main.c	texture_handler.c	parse.c	initialiser.c
 #==============================================================================#
 
-HEADERS = libft.h	get_next_line.h
-INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include
+INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include -I ../include
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 NAME = so_long
 CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
-LFLAGS = -L$(GLFW_DIR) -lglfw lib/MLX42/build/libmlx42.a -framework Cocoa -framework OpenGL -framework IOKit
+LFLAGS = -L$(GLFW_DIR) -lglfw lib/MLX42/build/libmlx42.a lib/libft/libft.a -framework Cocoa -framework OpenGL -framework IOKit
 RM = rm -f
 RM_DIR = rm -rf
 #=====================================PATHS=====================================#
@@ -37,7 +36,6 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "$(BLUE)$(BOLD)✅Compiling $(YELLOW)SO_LONG $(BLUE)→ $(RESET)$(CYAN)$(notdir $<)$(RESET)            "
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 	@printf $(UP)$(CUT)
-	@sleep 1
 $(NAME): $(BIN_DIR) $(OBJS)
 	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ $(OBJS) $(INCLUDES)
 $(BIN_DIR):

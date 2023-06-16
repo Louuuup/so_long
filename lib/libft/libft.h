@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:15:43 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/12 18:00:58 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:46:37 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,17 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-// Stash: Only actual line
-// Buffer: all infos read for "BUFFER_SIZE" bytes.
-// b_proxy: Tmp string for buffer.
-// proxy: temp to free old stashs.
-// rd_out: number of bytes read with read();
-// stash_size: Total lengh of actual stash string.
-// nl_byte: position of '\n' in Buffer.
-// error: 0 if no error, other if something went wrong
-
+typedef struct datas
+{
+	char	*stash;
+	char	buffer[BUFFER_SIZE + 1];
+	char	b_pxy[BUFFER_SIZE + 1];
+	char	*proxy;
+	int		rd_out;
+	int		nl_idx;
+	int		stash_size;
+	int		error;
+}			t_data;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -79,5 +81,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*get_next_line(int fd);
 
 #endif
