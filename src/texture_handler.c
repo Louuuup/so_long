@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/15 19:12:18 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:54:13 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void texture_grab(t_txt* textures)
     textures->floor = mlx_load_png(FILE_TEST);
     if (!textures->floor)
         ft_error();
-    textures->wall = mlx_load_png("./textures/test.png");
+    textures->wall = mlx_load_png("./textures/128px/wall0.png");
     if (!textures->wall)
         ft_error();
     textures->door = mlx_load_png(FILE_TEST);
@@ -31,9 +31,18 @@ static void texture_grab(t_txt* textures)
     textures->collectible = mlx_load_png(FILE_TEST);
     if (!textures->collectible)
         ft_error();
-    textures->player = mlx_load_png(FILE_TEST);
-    if (!textures->player)
+    textures->player_r = mlx_load_png("./textures/player_r.png");
+    if (!textures->player_r)
         ft_error();
+    // textures->player_l = mlx_load_png("./textures/player_l");
+    // if (!textures->player_l)
+    //     ft_error();
+    // textures->player_u = mlx_load_png("./textures/player_u");
+    // if (!textures->player_u)
+    //     ft_error();
+    // textures->player_d = mlx_load_png("./textures/player_d");
+    // if (!textures->player_d)
+    //     ft_error();
 }
 
 static void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
@@ -43,7 +52,7 @@ static void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     tiles->door = mlx_texture_to_image(mlx, textures->door);
     tiles->collectible = mlx_texture_to_image(mlx, textures->collectible);
     tiles->ennemy = mlx_texture_to_image(mlx, textures->ennemy);
-    tiles->player = mlx_texture_to_image(mlx, textures->player);
+    tiles->player = mlx_texture_to_image(mlx, textures->player_r);
 
 }
 // Unused for now

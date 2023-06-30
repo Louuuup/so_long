@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:20:10 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/12 17:54:38 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:00:38 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	has_nl(char *str)
 	return (-1);
 }
 
-static int	append_to_stash(t_data *data)
+static int	append_to_stash(t_gnldata *data)
 {
 	data->proxy = data->stash;
 	data->stash = ft_calloc(data->stash_size + 1, sizeof(char));
@@ -42,7 +42,7 @@ static int	append_to_stash(t_data *data)
 	return (NO_ERROR);
 }
 
-static int	parsing_without_nl(t_data *data)
+static int	parsing_without_nl(t_gnldata *data)
 {
 	data->stash_size += ft_strlen(data->buffer);
 	if (data->stash)
@@ -59,7 +59,7 @@ static int	parsing_without_nl(t_data *data)
 	return (NO_ERROR);
 }
 
-static int	parsing_with_nl(t_data *data)
+static int	parsing_with_nl(t_gnldata *data)
 {
 	data->stash_size += data->nl_idx;
 	if (data->stash)
@@ -79,7 +79,7 @@ static int	parsing_with_nl(t_data *data)
 
 char	*get_next_line(int fd)
 {
-	static t_data	data;
+	static t_gnldata	data;
 
 	if (fd < 0)
 		return (NULL);

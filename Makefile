@@ -6,13 +6,16 @@
 #    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/06/15 15:48:19 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2023/06/29 13:46:39 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-#===================================SOURCES====================================#
-SRC = main.c	texture_handler.c	parse.c	initialiser.c
+#============================================================================#
+SRC = \
+main.c		texture_handler.c	initialiser.c	put_tile.c	\
+parse.c		put_tile_utils.c	movements.c		collisions.c \
+layers.c
 #==============================================================================#
 
 INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include -I ../include
@@ -26,7 +29,6 @@ RM_DIR = rm -rf
 GLFW_DIR = /Users/ycyr-roy/.brew/lib
 MLX_DIR = lib/MLX42
 LIBFT_DIR = lib/libft
-GNL_DIR = /include #Might be useless
 BIN_DIR = bin
 SRC_DIR = src
 #==============================================================================#
@@ -44,7 +46,7 @@ $(BIN_DIR):
 libft:
 	@$(MAKE) -C $(LIBFT_DIR)
 mlx42:
-	@echo "$(BLUE)$(BOLD)Compiling $(PURPLE)MLX42 $(RESET)$(CYAN)$(notdir $<)$(RESET)"
+	@echo "$(BLUE)$(BOLD)Compiling $(PURPLE)MLX42 $(RESET)$(CYAN)$(notdir $<)$(RESET)                  "
 	@cmake -S $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 	@printf $(UP)$(CUT)
 clean:

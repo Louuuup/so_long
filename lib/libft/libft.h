@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:15:43 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/14 15:46:37 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:00:01 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-typedef struct datas
+typedef struct gnldata
 {
 	char	*stash;
 	char	buffer[BUFFER_SIZE + 1];
@@ -36,7 +36,7 @@ typedef struct datas
 	int		nl_idx;
 	int		stash_size;
 	int		error;
-}			t_data;
+}			t_gnldata;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

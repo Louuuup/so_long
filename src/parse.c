@@ -6,95 +6,101 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/15 21:41:07 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:02:32 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 
-size_t	iso_cords_x(size_t anchor, size_t x, size_t y)
+void	player_anchor(void)
 {
-	size_t x_out;
-	(void)anchor;
-	x_out = x * 0.5 * TILE_SIZE + y * -0.5 * TILE_SIZE - TILE_SIZE;
-	return (x_out);
-}
-
-size_t	iso_cords_y(size_t x, size_t y)
-{
-	size_t	y_out;
-	y_out = x * 0.25 * TILE_SIZE + y * 0.25 * TILE_SIZE + TILE_SIZE;
-	return (y_out);
-}
-
-void	put_tile(mlx_t *mlx, t_tile *tiles, mlx_image_t *img)
-{
-	int	x;
-	int	y;
-	
-	tiles->anchor = 0;
-	x = iso_cords_x(tiles->anchor, tiles->nxt_x, tiles->nxt_y);
-	y = iso_cords_y(tiles->nxt_x, tiles->nxt_y);
-    if (mlx_image_to_window(mlx, img, x, y) == -1)
-        ft_error();
-	printf("TILE PLACED:\nx = %zu\ny = %zu\n", tiles->nxt_x, tiles->nxt_y);
-	tiles->nxt_x += 1;
-}
-
-static void	parse_line(mlx_t *mlx, t_tile *tiles, char *line)
-{
-	size_t	i;
-
-	i = 0;
-	tiles->nxt_x =  (WIDTH / TILE_SIZE) - (tiles->count_x / 2);
-	while (line[i])
+		int	x;
+		int	y;
+		int tmp;
+		
+		x = 0;
+		y = 0;
+		tmp = 0;
+	while (y < MAX_TILES_Y)
 	{
-		if (line[i] == '1')
-			put_tile(mlx, tiles, tiles->wall);
-		else if (line[i] == '0')
-			put_tile(mlx, tiles, tiles->floor);
-		else if (line[i] == 'P')
-			put_tile(mlx, tiles, tiles->player);
-		else if (line[i] == 'C')
-			put_tile(mlx, tiles, tiles->collectible);
-		else if (line[i] == 'E')
-			put_tile(mlx, tiles, tiles->door);
-		else if (line[i] == '0')
-			put_tile(mlx, tiles, tiles->floor);
-		else if (line[i] == '0')
-			put_tile(mlx, tiles, tiles->floor);
-		i++;
+		while (x < MAX_TILES_X)
+		{
+			if (get_data()->line[y][x] == 'P')
+			{
+				get_data()->start[0] = x;
+				get_data()->start[1] = y;
+				get_data()->tiles->anchor_x = WIDTH / 2 - iso_x(x, y, 0);
+				get_data()->tiles->anchor_y = HEIGHT / 2 - iso_y(x, y, 0);
+				return ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
 	}
-	tiles->nxt_x = 0;
-	tiles->nxt_y += 1;	
-	return ;
+
 }
 
-int	parse_main(mlx_t *mlx, t_tile *tiles)
+void	ft_dimensions(void)
+{
+	t_data	*data;
+	
+	data = get_data();
+	data->height = 1;
+	data->length = 1;
+	while (data->line[data->height][data->length] != '\0' &&  data->length <= MAX_TILES_X)
+	{
+		data->length++;
+	}
+	data->length--;
+	while (data->line[data->height][data->length] != '\0' && data->height <= MAX_TILES_Y)
+	{
+		data->height++;
+	}
+	// data->tiles->anchor = data->length / 2 * TILE_SIZE;
+	// printf("X: %zu\nY: %zu\nANCHOR: %zu\n", data->length, data->height, data->tiles->anchor);
+	
+}
+
+void	parse_read(void)
 {
 	char	*line;
 	int		fd;
-
+	size_t	i;
+	
+	i = 0;
     fd = 0;
 	line = NULL;
 	fd = open(MAP, O_RDONLY);
 	if (fd < 0)
-		return (EXIT_FAILURE);
+		return ;
 	while (1)
 	{
 		line = get_next_line(fd);
-		printf("fd=%d\nline=%s\n", fd, line); // tmp
+		ft_strlcpy(get_data()->line[i], line, MAX_TILES_X);
 		if (!line || line[0] == '\0')
 			break ;
 		else
-		{
-			tiles->count_x = ft_strlen(line);
-			parse_line(mlx, tiles, line);
-		}
-		free(line);
+			free(line);
 		line = NULL;
+		i++;
 	}
     fd = close(fd);
-	return (EXIT_SUCCESS);
+	ft_dimensions(); //might be useless soon =D
 }
+
+void	parse_main(mlx_t *mlx, t_tile *tiles)
+{
+	size_t	i;
+	
+	i = 0;
+	(void)mlx;
+	parse_read();
+	player_anchor();
+	parse_tiles('P', tiles->player);
+	tiles->player->instances->z = (parse_tiles('0', tiles->floor) + parse_tiles('1', tiles->wall));
+}
+
+
+// get_data()->images;
