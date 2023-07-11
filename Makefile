@@ -6,7 +6,7 @@
 #    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/06/29 13:46:39 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2023/07/07 16:13:42 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,14 @@ CC = gcc
 SRC = \
 main.c		texture_handler.c	initialiser.c	put_tile.c	\
 parse.c		put_tile_utils.c	movements.c		collisions.c \
-layers.c
+layers.c	utils.c				render.c		map_handler.c \
+
 #==============================================================================#
 
 INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include -I ../include
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 NAME = so_long
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g
 LFLAGS = -L$(GLFW_DIR) -lglfw lib/MLX42/build/libmlx42.a lib/libft/libft.a -framework Cocoa -framework OpenGL -framework IOKit
 RM = rm -f
 RM_DIR = rm -rf
@@ -44,8 +45,8 @@ $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
 libft:
-	@$(MAKE) -C $(LIBFT_DIR)
 mlx42:
+	@$(MAKE) -C $(LIBFT_DIR)
 	@echo "$(BLUE)$(BOLD)Compiling $(PURPLE)MLX42 $(RESET)$(CYAN)$(notdir $<)$(RESET)                  "
 	@cmake -S $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 	@printf $(UP)$(CUT)

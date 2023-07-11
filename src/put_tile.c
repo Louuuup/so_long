@@ -6,83 +6,104 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/29 18:01:59 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:48:58 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
-
-
-int	iso_x(int x, int y, int anchor)
-{
-	int x_out;
-	x_out = x * 0.5 * TILE_SIZE + y * -0.5 * TILE_SIZE - TILE_SIZE / 2 + anchor;
-	return (x_out);
-}
-
-int	iso_y(int x, int y, int anchor)
-{
-	int	y_out;
-	y_out = x * 0.25 * TILE_SIZE + y * 0.25 * TILE_SIZE + TILE_SIZE / 2 + anchor;
-	return (y_out);
-}
+#include "so_long.h"
 
 int	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y)
 {
 	int	i;
 	
+	// printf("(%d,%d)\n", x, y);
 	i = mlx_image_to_window(mlx, img, x, y);
 	// printf("x: %zu\n", x);
-	printf("Placing tile at (%d,%d,%d)\n", x, y, i);
+	// printf("Placing tile at (%d,%d,%d)\n", x, y, i);
     if (i == -1)
         ft_error();
 	return (i);
 }
+//OLD BUT ON SAIT JAMAIS
+// int	parse_tiles(char c, mlx_image_t *tile)
+// {
+// 	int	i;
+// 	int	j;
+// 	t_data	*data;
 
-void    depth_hander(void)
+// 	data = get_data();
+// 	i = 0;
+// 	j = 0;
+// 	while (j < MAX_TILES_Y && j < data->player.y + MAX_RANGE)
+// 	{
+// 		while (i < MAX_TILES_X && i < data->player.x + MAX_RANGE)
+// 		{
+// 			if (data->map[j][i] == c)
+// 			{
+// 				// printf("Gerenating '%c' tile.\n", c);
+// 				put_tile(data->mlx, tile, iso_x(i, j, data->anchor.x), iso_y(i, j, data->anchor.y));
+// 			}
+// 			i++;
+// 		}
+// 		i = 0;
+// 		j++;
+// 	}
+// 	return (0);
+// }
+
+void	put_floor(t_data	*data)
 {
-    size_t  i;
-    t_tile *tiles;
-
-    tiles = get_data()->tiles;
-    i = 0;
-    printf("\n");
-    // printf("z is %d\n", tiles->floor->instances[0].z);
-    while (tiles->floor->instances[i].enabled)
-    {
-        tiles->floor->instances[i].x += 64;
-        i++;
-    }
+	int x;
+	int y;
+	
+	x = -MAX_RANGE;
+	y = -MAX_RANGE;
+	while (y <= (int)data->height + MAX_RANGE && y <= data->player.y + MAX_RANGE)
+	{
+		while (x <= (int)data->length + MAX_RANGE && x <= data->player.x + MAX_RANGE)
+		{
+			// printf("Placing some floors at (%d,%d)\n", x, y);
+			put_tile(data->mlx, data->tiles->floor[rand_8(x, y)], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			x++;
+		}
+		x = -MAX_RANGE - 1;
+		y++;
+	}
+}
+void	put_object(t_data	*data)
+{
+	int x;
+	int y;
+	
+	x = 0;
+	y = 0;
+	while (y <= (int)data->height && y <= data->player.y + MAX_RANGE)
+	{
+		while (x <= (int)data->length && x <= data->player.x + MAX_RANGE)
+		{
+			if (data->map[y][x] == '1')
+				put_tile(data->mlx, data->tiles->wall, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			else if (data->map[y][x] == 'P')
+				put_tile(data->mlx, data->tiles->player[1], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }
 
-int	parse_tiles(char c, mlx_image_t *tile)
+int	rand_8(int	x, int	y)
 {
-	size_t	i;
-	size_t	j;
-	t_data	*data;
+	t_data		*data;
 
+	// printf("Randomizing...\n");
 	data = get_data();
-
-	i = 0;
-	j = 0;
-
-	while (j < MAX_TILES_Y)
-	{
-		while (i < MAX_TILES_X)
-		{
-			if (c == '0' && data->line[j][i] == 'P')
-			{
-				put_tile(data->mlx, get_data()->tiles->floor, iso_x(i, j, data->tiles->anchor_x), iso_y(i, j, data->tiles->anchor_y));
-			}
-			else if (data->line[j][i] == c)
-			{
-				printf("Gerenating '%c' tile.\n", c);
-				put_tile(data->mlx, tile, iso_x(i, j, data->tiles->anchor_x), iso_y(i, j, data->tiles->anchor_y));
-			}
-			i++;
-		}
-		i = 0;
-		j++;
-	}
-	return (0);
+	if (x < 0)
+		x = -x;
+	if (y < 0)
+		y = -y;
+	// printf("RDM_KEY: %llu\n", data->rdm_key);
+	data->rdm_key = x * data->rdm_key + y;
+	// printf("Randomized %llu\n", data->rdm_key % 8);
+	return (data->rdm_key % 8);
 }

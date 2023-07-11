@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/29 14:13:05 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:45:08 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 	img = param;
 	if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		mv_right();
-	else if (keydata.key == MLX_KEY_P && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-		depth_hander();
 	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		mv_left();
 	else if (keydata.key == MLX_KEY_W && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
@@ -45,28 +43,28 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 		mv_down();
 	else if (keydata.key == MLX_KEY_ESCAPE && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		exit(EXIT_SUCCESS);
+	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+    	un_render(get_data()->mlx, get_data()->tiles);	
 }
 
 int main(void)
 {
 	mlx_t *mlx;
-	t_tile tiles;
 	t_txt textures;
 
 	mlx = mlx_init(WIDTH, HEIGHT, "Epic Game OMG ITS SO COOOL v0.04", true);
 	if (!mlx)
 		ft_error();
-	init_all(mlx, &tiles, &textures);
-	printf("init_all done\n");
-	texture_handler(mlx, &textures, &tiles);
-	printf("texture_handler done\n");
-	parse_main(mlx, &tiles);
-	printf("parse_main done\n");
-    mlx_key_hook(mlx, my_keyhook, (void *)tiles.player);
-	printf("mlx_key_hook done\n");
+	printf("Initialising...\n");
+	init_all(mlx, &textures);
+	printf("Texture Handling...\n");
+	texture_handler(mlx, &textures, get_data()->tiles);
+	printf("Parsing...\n");
+	parse_main(mlx, get_data()->tiles);
+	printf("Launching Keyhook...\n");
+    mlx_key_hook(mlx, my_keyhook, (void *)get_data()->tiles->player);
+	printf("Launching Loop...\n");
     mlx_loop(mlx);
-	printf("mlx_loop done\n");
 	mlx_terminate(mlx);
-	mlx_delete_image(mlx, tiles.player);
 	return (0);
 }

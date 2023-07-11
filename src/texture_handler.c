@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/06/29 15:54:13 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:21:58 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,54 +16,51 @@
 
 static void texture_grab(t_txt* textures)
 {
-    textures->floor = mlx_load_png(FILE_TEST);
-    if (!textures->floor)
+    textures->floor[0] = mlx_load_png("./textures/floor0.png");
+    textures->floor[1] = mlx_load_png("./textures/floor1.png");
+    textures->floor[2] = mlx_load_png("./textures/floor2.png");
+    textures->floor[3] = mlx_load_png("./textures/floor3.png");
+    textures->floor[4] = mlx_load_png("./textures/floor4.png");
+    textures->floor[5] = mlx_load_png("./textures/floor5.png");
+    textures->floor[6] = mlx_load_png("./textures/floor6.png");
+    textures->floor[7] = mlx_load_png("./textures/floor7.png");
+    textures->wall = mlx_load_png("./textures/wall0.png");
+    // textures->door = mlx_load_png(FILE_TEST);
+    // textures->ennemy = mlx_load_png(FILE_TEST);
+    // textures->collectible = mlx_load_png(FILE_TEST);
+    textures->player[0] = mlx_load_png("./textures/player_u.png");
+    textures->player[1] = mlx_load_png("./textures/player_r.png");
+    textures->player[2] = mlx_load_png("./textures/player_d.png");
+    textures->player[3] = mlx_load_png("./textures/player_l.png");
+    if (!textures->floor[0] || !textures->floor[1] || !textures->floor[2] || !textures->floor[3]
+        || !textures->floor[4] || !textures->floor[5] || !textures->floor[6] || !textures->floor[7]
+        || !textures->wall || !textures->player[0] || !textures->player[1] || !textures->player[2]
+        || !textures->player[3])
         ft_error();
-    textures->wall = mlx_load_png("./textures/128px/wall0.png");
-    if (!textures->wall)
-        ft_error();
-    textures->door = mlx_load_png(FILE_TEST);
-    if (!textures->door)
-        ft_error();
-    textures->ennemy = mlx_load_png(FILE_TEST);
-    if (!textures->ennemy)
-        ft_error();
-    textures->collectible = mlx_load_png(FILE_TEST);
-    if (!textures->collectible)
-        ft_error();
-    textures->player_r = mlx_load_png("./textures/player_r.png");
-    if (!textures->player_r)
-        ft_error();
-    // textures->player_l = mlx_load_png("./textures/player_l");
-    // if (!textures->player_l)
-    //     ft_error();
-    // textures->player_u = mlx_load_png("./textures/player_u");
-    // if (!textures->player_u)
-    //     ft_error();
-    // textures->player_d = mlx_load_png("./textures/player_d");
-    // if (!textures->player_d)
-    //     ft_error();
 }
 
-static void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
+void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
 {
-    tiles->floor = mlx_texture_to_image(mlx, textures->floor);
+    tiles->floor[0] = mlx_texture_to_image(mlx, textures->floor[0]);
+    tiles->floor[1] = mlx_texture_to_image(mlx, textures->floor[1]);
+    tiles->floor[2] = mlx_texture_to_image(mlx, textures->floor[2]);
+    tiles->floor[3] = mlx_texture_to_image(mlx, textures->floor[0]);
+    tiles->floor[4] = mlx_texture_to_image(mlx, textures->floor[4]);
+    tiles->floor[5] = mlx_texture_to_image(mlx, textures->floor[5]);
+    tiles->floor[6] = mlx_texture_to_image(mlx, textures->floor[6]);
+    tiles->floor[7] = mlx_texture_to_image(mlx, textures->floor[7]);
     tiles->wall = mlx_texture_to_image(mlx, textures->wall);
-    tiles->door = mlx_texture_to_image(mlx, textures->door);
-    tiles->collectible = mlx_texture_to_image(mlx, textures->collectible);
-    tiles->ennemy = mlx_texture_to_image(mlx, textures->ennemy);
-    tiles->player = mlx_texture_to_image(mlx, textures->player_r);
+    tiles->player[0] = mlx_texture_to_image(mlx, textures->player[0]);
+    tiles->player[1] = mlx_texture_to_image(mlx, textures->player[1]);
+    tiles->player[2] = mlx_texture_to_image(mlx, textures->player[2]);
+    tiles->player[3] = mlx_texture_to_image(mlx, textures->player[3]);
 
-}
-// Unused for now
-void tile_display(mlx_t* mlx, mlx_image_t* img, int x, int y)
-{
-    if (mlx_image_to_window(mlx, img, x, y))
-        ft_error();
 }
 
 void texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles)
 {
-   texture_grab(textures);
-   texture_convert(mlx, textures, tiles);
+    texture_grab(textures);
+    texture_convert(mlx, textures, tiles);
+    printf("Texture Handling DONE\n");
+
 }
