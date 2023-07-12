@@ -6,12 +6,34 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:02:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 17:50:47 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:41:31 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+int		char_count(char x, char arr[][MAX_TILES_X])
+{
+	int i;
+	int j;
+	int	count;
+
+	count = 0;
+	i = 0;
+	j = 0;
+	while (j < MAX_TILES_Y)
+	{
+		while (i < MAX_TILES_X)
+		{
+			if (arr[j][i] == x)
+				count++;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	return (count);
+}
 void	ft_free(void **ptr)
 {
 	if (*ptr)

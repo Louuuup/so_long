@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 17:51:20 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:01:30 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <MLX42/MLX42.h>
 #include <stdio.h>
+#include "string.h"
 
 //================Base Values================//
 # define WIDTH 1920
@@ -27,9 +28,11 @@
 # define MAX_RANGE 16
 # define READ_BUFFER 256
 # define RANDOM_SEED 189364
+//==================Aliases=================//
+
 //==================Files===================//
 # define FILE_TEST "./textures/128px/floor0.png"
-# define MAP "./maps/m_medium.ber"
+# define MAP "./maps/labyrinth.ber"
 //================Directions=================//
 //					  0
 //					3 + 1						
@@ -135,5 +138,8 @@ void    map_read(int fd, t_data *data);
 void 	texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 void	re_render(t_data *data);
 void	put_object(t_data	*data);
+void	ft_error_mlx(void);
+int		char_count(char x, char arr[][MAX_TILES_X]);
+int		map_legal(t_data *data, char map[][MAX_TILES_X]);
 
 #endif

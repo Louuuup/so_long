@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 17:49:31 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:10:23 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_dimensions(void)
 {
 	t_data	*data;
 	data = get_data();
-	data->height = 1;
-	data->length = 1;
+	data->height = 0;
+	data->length = 0;
 	while (data->map[data->height][data->length] != '\0' &&  data->length <= MAX_TILES_X)
 	{
 		data->length++;
@@ -57,6 +57,8 @@ void	ft_dimensions(void)
 	{
 		data->height++;
 	}
+	data->height--;
+	
 	// data->tiles->anchor = data->length / 2 * TILE_SIZE;
 	// printf("X: %zu\nY: %zu\nANCHOR: %zu\n", data->length, data->height, data->tiles->anchor);
 	
@@ -76,7 +78,7 @@ void	parse_read(void)
 		return ;
 	map_read(fd, data);
     fd = close(fd);
-	ft_dimensions(); //might be useless soon =D
+	ft_dimensions();
 	printf("Reading DONE\n");
 }
 

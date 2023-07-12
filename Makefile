@@ -6,7 +6,7 @@
 #    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/07/07 16:13:42 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2023/07/11 19:11:49 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ CC = gcc
 SRC = \
 main.c		texture_handler.c	initialiser.c	put_tile.c	\
 parse.c		put_tile_utils.c	movements.c		collisions.c \
-layers.c	utils.c				render.c		map_handler.c \
-
+layers.c	map_verifs.c		render.c		map_handler.c \
+utils.c
 #==============================================================================#
 
 INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include -I ../include

@@ -6,11 +6,11 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 17:45:08 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:01:13 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "so_long.h"
 
 t_data	*get_data(void)
 {
@@ -23,6 +23,11 @@ t_data	*get_data(void)
 }
 
 void ft_error(void)
+{
+	perror("ERROR:");
+	exit(EXIT_FAILURE);
+}
+void ft_error_mlx(void)
 {
 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
@@ -46,7 +51,6 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
     	un_render(get_data()->mlx, get_data()->tiles);	
 }
-
 int main(void)
 {
 	mlx_t *mlx;
@@ -61,10 +65,13 @@ int main(void)
 	texture_handler(mlx, &textures, get_data()->tiles);
 	printf("Parsing...\n");
 	parse_main(mlx, get_data()->tiles);
+	if (!map_legal(get_data(), get_data()->map))
+	{
 	printf("Launching Keyhook...\n");
     mlx_key_hook(mlx, my_keyhook, (void *)get_data()->tiles->player);
 	printf("Launching Loop...\n");
     mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_terminate(mlx);	
+	}
 	return (0);
 }
