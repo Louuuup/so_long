@@ -1,0 +1,22 @@
+OS = $(shell uname)
+USER = $(shell whoami)
+
+ifeq ($(OS),Linux)
+            GLFW = include/MLX42/libmlx42.a -ldl -lglfw -I MLX42/include -g -lm
+else
+            GLFW = -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+endif
+
+all: mlx libft $(NAME)
+
+$(NAME): $(OBJS)
+@$(CC) $(OBJS) $(GLFW) $(... headers, libft.a, libmlx.a, etc -o $(NAME)
+
+..en gros tu specifies le path d'une des librairies, tu pourras ajuster le path selon l'organisation de tes fichiers. Tu peux aussi specifier les conditions mieux; genre 
+Ifeq ($(OS), Linux
+GLFW = (...
+else ifeq ($(OS), Darwin
+GLFW = (...
+ else 
+    $(error Unsuported operating system: $(OS))
+endif

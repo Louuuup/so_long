@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
+#    By: yakary <yakary@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/07/11 19:11:49 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2023/07/11 22:08:18 by yakary           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,27 @@ utils.c
 INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include -I ../include
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 NAME = so_long
+OS = $(shell uname)
+USER = $(shell whoami)
 CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g
-LFLAGS = -L$(GLFW_DIR) -lglfw lib/MLX42/build/libmlx42.a lib/libft/libft.a -framework Cocoa -framework OpenGL -framework IOKit
+LFLAGS = -L$(GLFW_DIR) -lglfw lib/MLX42/build/libmlx42.a lib/libft/libft.a
 RM = rm -f
 RM_DIR = rm -rf
+#==================================OS DEPENDANCIES=================================#
+ifeq ($(OS),Linux)
+	LFLAGS += -Iinclude -ldl -lglfw -pthread -lm
+else
+	LFLAGS += -framework Cocoa -framework OpenGL -framework IOKit
+endif
+
+ifeq ($(OS),Linux)
+	GLFW_DIR = /Users/ycyr-roy/.brew/lib
+else ifeq ($(OS), Darwin)
+	GLFW_DIR = /Users/ycyr-roy/.brew/lib
+else 
+    $(error Unsuported operating system: $(OS))
+endif
 #=====================================PATHS=====================================#
-GLFW_DIR = /Users/ycyr-roy/.brew/lib
 MLX_DIR = lib/MLX42
 LIBFT_DIR = lib/libft
 BIN_DIR = bin

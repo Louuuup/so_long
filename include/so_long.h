@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 20:01:30 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:15:03 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 void	tile_display(mlx_t* mlx, mlx_image_t* img, int x, int y);
 void	ft_error(void);
 void	parse_main(mlx_t *mlx, t_tile *tiles);
-int		put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y);
+void	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y);
 t_data	*get_data(void); //Singleton
 void    mv_up(void);
 void    mv_down(void);

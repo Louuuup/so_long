@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 20:01:13 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:10:40 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ void ft_error_mlx(void)
 }
 
 void my_keyhook(mlx_key_data_t keydata, void* param)
-{
-	
-	mlx_image_t* img;
-	img = param;
+{	
+	(void)param;
 	if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		mv_right();
 	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))

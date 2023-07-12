@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 20:10:23 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:15:42 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ void	ft_dimensions(void)
 void	parse_read(void)
 {
 	int		fd;
-	size_t	i;
 	t_data	*data;
 	
 	data = get_data();
-	i = 0;
     fd = 0;
 	fd = open(MAP, O_RDONLY);
 	if (fd < 0)
@@ -84,9 +82,6 @@ void	parse_read(void)
 
 void	parse_main(mlx_t *mlx, t_tile *tiles)
 {
-	size_t	i;
-	
-	i = 0;
 	(void)mlx;
 	(void)tiles;
 	printf("Reading...\n");

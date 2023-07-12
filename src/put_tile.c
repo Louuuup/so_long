@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   put_tile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 17:48:58 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:14:32 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y)
+void	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y)
 {
 	int	i;
 	
@@ -22,8 +22,10 @@ int	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y)
 	// printf("Placing tile at (%d,%d,%d)\n", x, y, i);
     if (i == -1)
         ft_error();
-	return (i);
+	else
+		return ;
 }
+
 //OLD BUT ON SAIT JAMAIS
 // int	parse_tiles(char c, mlx_image_t *tile)
 // {
