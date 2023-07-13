@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_tile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 21:14:32 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/13 14:36:34 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	put_floor(t_data	*data)
 		while (x <= (int)data->length + MAX_RANGE && x <= data->player.x + MAX_RANGE)
 		{
 			// printf("Placing some floors at (%d,%d)\n", x, y);
-			put_tile(data->mlx, data->tiles->floor[rand_8(x, y)], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			put_tile(data->mlx, data->tiles->floor[ft_rand(8, x, y)], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
 			x++;
 		}
 		x = -MAX_RANGE - 1;
@@ -79,14 +79,18 @@ void	put_object(t_data	*data)
 	
 	x = 0;
 	y = 0;
-	while (y <= (int)data->height && y <= data->player.y + MAX_RANGE)
+	while (!(y >= data->player.y - MAX_RANGE))
+		y++;
+	while (y <= (int)data->height && y <= data->player.y + MAX_RANGE && y >= data->player.y - MAX_RANGE)
 	{
 		while (x <= (int)data->length && x <= data->player.x + MAX_RANGE)
 		{
 			if (data->map[y][x] == '1')
-				put_tile(data->mlx, data->tiles->wall, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			{
+				put_tile(data->mlx, data->tiles->wall[ft_rand(6, x, y)], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			}
 			else if (data->map[y][x] == 'P')
-				put_tile(data->mlx, data->tiles->player[1], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+				put_tile(data->mlx, data->tiles->player, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
 			x++;
 		}
 		x = 0;
@@ -94,18 +98,19 @@ void	put_object(t_data	*data)
 	}
 }
 
-int	rand_8(int	x, int	y)
+int	ft_rand(int range, int x, int y)
 {
 	t_data		*data;
+	int			out;
 
 	// printf("Randomizing...\n");
 	data = get_data();
-	if (x < 0)
-		x = -x;
-	if (y < 0)
-		y = -y;
 	// printf("RDM_KEY: %llu\n", data->rdm_key);
+	
 	data->rdm_key = x * data->rdm_key + y;
+	if (!(data->rdm_key % range))
+		data->rdm_key++;
+	out = data->rdm_key % range;
 	// printf("Randomized %llu\n", data->rdm_key % 8);
-	return (data->rdm_key % 8);
+	return (out);
 }

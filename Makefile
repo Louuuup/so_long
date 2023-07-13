@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yakary <yakary@student.42.fr>              +#+  +:+       +#+         #
+#    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/07/11 22:08:18 by yakary           ###   ########.fr        #
+#    Updated: 2023/07/12 12:04:35 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ layers.c	map_verifs.c		render.c		map_handler.c \
 utils.c
 #==============================================================================#
 
-INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include -I ../include
+INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 NAME = so_long
 OS = $(shell uname)

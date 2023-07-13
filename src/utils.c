@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:02:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 19:41:31 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:39:16 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,18 @@ void    print_map(t_data *data)
 
 	x = 0;
 	y = 0;
-	printf("\n======THE MAP=====\n");
-	while (y < MAX_TILES_Y && y < data->player.y + MAX_RANGE)
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	printf("YOU ARE AT:(%d,%d)\n", data->player.x, data->player.y);
+	printf("\n============THE MAP============\n");
+	while (!(y >= data->player.y - MAX_RANGE))
+		y++;
+	while (y < MAX_TILES_Y && y < data->player.y + MAX_RANGE && y >= data->player.y - MAX_RANGE)
 	{
 		if (data->map[y][x] != '\0')
 			ft_putchar_fd('\n', 1);
-		while (x < MAX_TILES_X && x < data->player.x + MAX_RANGE)
+		while (!(x >= data->player.x - MAX_RANGE))
+			x++;
+		while (x < MAX_TILES_X && x < data->player.x + MAX_RANGE && x >= data->player.x - MAX_RANGE)
 		{ //add if statement if '/0', dont print?
 			ft_putchar_fd(data->map[y][x], 1);
 			x++;

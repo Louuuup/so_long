@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 21:15:03 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/13 14:10:37 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MAX_TILES_Y 64
 # define MAX_RANGE 16
 # define READ_BUFFER 256
-# define RANDOM_SEED 189364
+# define RANDOM_SEED 916
 //==================Aliases=================//
 
 //==================Files===================//
@@ -62,7 +62,7 @@ typedef struct textures
 	mlx_texture_t	*player[4];
 	mlx_texture_t	*ennemy;
 	mlx_texture_t	*floor[8];
-	mlx_texture_t	*wall;
+	mlx_texture_t	*wall[6];
 	mlx_texture_t	*door;
 
 }			t_txt;
@@ -70,8 +70,8 @@ typedef struct textures
 typedef struct images
 {
 	mlx_image_t	*floor[8];
-	mlx_image_t	*wall;
-	mlx_image_t	*player[4];
+	mlx_image_t	*wall[6];
+	mlx_image_t	*player;
 	mlx_image_t	*collectible;
 	mlx_image_t	*ennemy;
 	mlx_image_t	*door;
@@ -92,6 +92,7 @@ typedef	struct	data
 	t_co				anchor;
 	char				map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
 	int					player_base_depth;
+	int					player_facing;
 	unsigned long long	rdm_key;
 	
 }			t_data;
@@ -132,10 +133,10 @@ void	player_placement(t_data *data);
 void    un_render(mlx_t *mlx, t_tile *tiles);
 void    print_map(t_data *data);
 void	put_floor(t_data	*data);
-int		rand_8(int	x, int	y);
+int		ft_rand(int range, int x, int y);
 void	ft_free(void **ptr);
 void    map_read(int fd, t_data *data);
-void 	texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles);
+void	texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 void	re_render(t_data *data);
 void	put_object(t_data	*data);
 void	ft_error_mlx(void);
