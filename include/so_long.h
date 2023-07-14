@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 14:10:37 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:21:15 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct textures
 	mlx_texture_t	*player[4];
 	mlx_texture_t	*ennemy;
 	mlx_texture_t	*floor[8];
-	mlx_texture_t	*wall[6];
+	mlx_texture_t	*wall[25];
 	mlx_texture_t	*door;
 
 }			t_txt;
@@ -70,7 +70,7 @@ typedef struct textures
 typedef struct images
 {
 	mlx_image_t	*floor[8];
-	mlx_image_t	*wall[6];
+	mlx_image_t	*wall[25];
 	mlx_image_t	*player;
 	mlx_image_t	*collectible;
 	mlx_image_t	*ennemy;

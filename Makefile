@@ -1,84 +1,99 @@
 # **************************************************************************** #
-#                                                                              #
+#			                                                                     #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 15:09:39 by yakary            #+#    #+#              #
-#    Updated: 2023/07/12 12:04:35 by ycyr-roy         ###   ########.fr        #
+#    Updated: 2023/07/13 22:16:59 by ycyr-roy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-#============================================================================#
-SRC = \
-main.c		texture_handler.c	initialiser.c	put_tile.c	\
-parse.c		put_tile_utils.c	movements.c		collisions.c \
-layers.c	map_verifs.c		render.c		map_handler.c \
-utils.c
-#==============================================================================#
-
-INCLUDES = -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I ./include
-OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 NAME = so_long
-OS = $(shell uname)
-USER = $(shell whoami)
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g
-LFLAGS = -L$(GLFW_DIR) -lglfw lib/MLX42/build/libmlx42.a lib/libft/libft.a
+#==============================================================================#
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
+# CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g
+SRC = \
+    main.c         texture_handler.c    initialiser.c    put_tile.c    \
+    parse.c        put_tile_utils.c    movements.c      collisions.c \
+    layers.c       map_verifs.c        render.c         map_handler.c \
+    utils.c
+#==============================================================================#
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
+OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
+#==============================================================================#
+# the following 'SRCS' and 'OBJS' can be used while working on the project...
+# (instead of the previous 'SRC' 'SRCS' 'OBJS' targets and *.c files)
+#==============================================================================#
+# SRCS = $(wildcard $(SRC_DIR)/*.c)
+# OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+#==============================================================================#
+SRC_DIR     = src
+BIN_DIR     = bin
+INC_DIR     = include
+MLX_DIR     = lib/MLX42
+MLX42       = $(MLX_DIR)/build/libmlx42.a
+LIBFT_DIR   = lib/libft
+LIBFT       = $(LIBFT_DIR)/libft.a
+# commandes shell
+MKDIRP = mkdir -p
 RM = rm -f
 RM_DIR = rm -rf
-#==================================OS DEPENDANCIES=================================#
-ifeq ($(OS),Linux)
-	LFLAGS += -Iinclude -ldl -lglfw -pthread -lm
-else
-	LFLAGS += -framework Cocoa -framework OpenGL -framework IOKit
-endif
-
-ifeq ($(OS),Linux)
-	GLFW_DIR = /Users/ycyr-roy/.brew/lib
-else ifeq ($(OS), Darwin)
-	GLFW_DIR = /Users/ycyr-roy/.brew/lib
-else 
-    $(error Unsuported operating system: $(OS))
-endif
-#=====================================PATHS=====================================#
-MLX_DIR = lib/MLX42
-LIBFT_DIR = lib/libft
-BIN_DIR = bin
-SRC_DIR = src
 #==============================================================================#
-
+# headers you want to include
+INCLUDES = -I$(LIBFT_DIR) -I$(INC_DIR) -I$(MLX_DIR)/$(INC_DIR)
+# things to link
+LFLAGS = -L$(GLFW_DIR) $(MLX42) $(LIBFT)
+# more things to link (OS check)
+ifeq ($(shell uname),Linux)
+    LFLAGS += -lglfw -ldl -pthread -lm
+else
+    LFLAGS += -framework Cocoa -framework OpenGL -framework IOKit -lglfw
+endif
+# finding glfw (test commented shell command under this)
+ifeq ($(shell uname),Linux)
+    GLFW_DIR = /usr/lib
+else ifeq ($(shell uname),Darwin)
+    GLFW_DIR = /Users/$(USER)/.brew/lib
+else
+    $(error Unsupported operating system: $(shell uname))
+endif
+#   GLFW_DIR = $(shell brew --prefix glfw)/lib
+# (to try instead of GLFW_DIR = /Users/$(USER)/.brew/lib)
+#==============================================================================#
 all: mlx42 libft $(NAME)
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo "$(BLUE)$(BOLD)✅Compiling $(YELLOW)SO_LONG $(BLUE)→ $(RESET)$(CYAN)$(notdir $<)$(RESET)            "
+	@echo "$(BLUE)$(BOLD)✅ Compiling $(YELLOW)SO_LONG $(BLUE)→$(RESET)$(CYAN)$(notdir $<)$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
-	@printf $(UP)$(CUT)
+	@printf	$(UP)$(CUT)
 $(NAME): $(BIN_DIR) $(OBJS)
-	@$(CC) $(CFLAGS) $(LFLAGS) -o $@ $(OBJS) $(INCLUDES)
+	@$(CC) $(CFLAGS) -o $@ $(OBJS) $(LFLAGS)
+	@echo "$(GREEN)$(BOLD)✅ Successfully compiled $(YELLOW)SO_LONG$(RESET)"
 $(BIN_DIR):
-	@mkdir -p $(BIN_DIR)
-
+	@$(MKDIRP) $(BIN_DIR)
 libft:
-mlx42:
 	@$(MAKE) -C $(LIBFT_DIR)
-	@echo "$(BLUE)$(BOLD)Compiling $(PURPLE)MLX42 $(RESET)$(CYAN)$(notdir $<)$(RESET)                  "
+mlx42:
 	@cmake -S $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
+	@echo "$(GREEN)$(BOLD)✅ Successfully compiled $(PURPLE)MLX42$(RESET)"
 	@printf $(UP)$(CUT)
 clean:
-	@rm -rf $(BIN_DIR)
+	@$(RM) $(OBJS)
+	@$(RM_DIR) $(BIN_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean
+	@echo "$(GREEN)$(BOLD)✅ Cleaned $(YELLOW)SO_LONG$(RESET)"
 fclean: clean
-	@rm -f $(NAME)
+	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@echo "$(GREEN)$(BOLD)✅ Fully cleaned $(YELLOW)SO_LONG$(RESET)"
 re: fclean all
-
-.PHONY: all, clean, fclean, re, mlx42
-
+.PHONY: all clean fclean re libft mlx42
 #=====================================COLORS=====================================#
 # Colors
-BLACK       =\033[30m
-RED         =\033[31m
+BLACK		=\033[30m
+RED			=\033[31m
 GREEN       =\033[32m
 YELLOW      =\033[33m
 BLUE        =\033[34m
@@ -104,6 +119,6 @@ BG_PURPLE   =\033[45m
 BG_CYAN     =\033[46m
 BG_WHITE    =\033[47m
 # Others
-UP	="\033[A" #cursor up
-CUT	="\033[K" #cut line
+UP    ="\033[A" # cursor up
+CUT   ="\033[K" # cut line
 #==============================================================================#

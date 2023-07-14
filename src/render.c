@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 14:26:31 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:22:29 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    un_render(mlx_t *mlx, t_tile *tiles_old)
 	if	(tiles_old)
 	{
   		mlx_delete_image(mlx, tiles_old->player);
-		while (i < 6)
+		while (i < 25)
 		{
 			mlx_delete_image(mlx, tiles_old->wall[i]);
 			i++;
