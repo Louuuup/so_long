@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 16:22:29 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/13 23:41:08 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void    un_render(mlx_t *mlx, t_tile *tiles_old)
 			mlx_delete_image(mlx, tiles_old->floor[i]);
 			i++;
 		}
+		mlx_delete_image(mlx, tiles_old->dark);
 		ft_free((void *)&tiles_old);
 	}
 }
@@ -58,6 +59,6 @@ void    rendering(t_data *data)
     put_floor(data);
 	printf("FT: put_object()...\n");
 	put_object(data);
-	print_map(data);
+	mlx_image_to_window(data->mlx, data->tiles->dark, 0, 0);
 	data->tiles_old = data->tiles;
 }

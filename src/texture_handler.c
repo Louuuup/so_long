@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 16:29:40 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:43:03 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void texture_grab(t_txt* textures)
     textures->wall[22] = mlx_load_png("./textures/wall22.png");
     textures->wall[23] = mlx_load_png("./textures/wall23.png");
     textures->wall[24] = mlx_load_png("./textures/wall24.png");
+    textures->dark = mlx_load_png("./textures/dark.png");
     // textures->door = mlx_load_png(FILE_TEST);
     // textures->ennemy = mlx_load_png(FILE_TEST);
     // textures->collectible = mlx_load_png(FILE_TEST);
@@ -61,7 +62,7 @@ static void texture_grab(t_txt* textures)
         || !textures->floor[4] || !textures->floor[5] || !textures->floor[6] || !textures->floor[7]
         || !textures->wall[0] || !textures->wall[1] || !textures->wall[2] || !textures->wall[3]
         || !textures->wall[4] || !textures->wall[5] || !textures->player[0] || !textures->player[1]
-        || !textures->player[2] || !textures->player[3])
+        || !textures->player[2] || !textures->player[3] || !textures->dark)
         ft_error_mlx();
 }
 
@@ -101,6 +102,7 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     tiles->wall[23] = mlx_texture_to_image(mlx, textures->wall[23]);
     tiles->wall[24] = mlx_texture_to_image(mlx, textures->wall[24]);
     tiles->player = mlx_texture_to_image(mlx, textures->player[get_data()->player_facing]);
+    tiles->dark = mlx_texture_to_image(mlx, textures->dark);
 
 }
 

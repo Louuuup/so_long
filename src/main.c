@@ -6,7 +6,7 @@
 /*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 21:10:40 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/13 22:40:56 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int main(void)
 	if (!map_legal(get_data(), get_data()->map))
 	{
 	printf("Launching Keyhook...\n");
+	
     mlx_key_hook(mlx, my_keyhook, (void *)get_data()->tiles->player);
 	printf("Launching Loop...\n");
     mlx_loop(mlx);

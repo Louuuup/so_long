@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 16:21:15 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/13 22:41:47 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct textures
 	mlx_texture_t	*floor[8];
 	mlx_texture_t	*wall[25];
 	mlx_texture_t	*door;
+	mlx_texture_t	*dark;
 
 }			t_txt;
 
@@ -75,6 +76,7 @@ typedef struct images
 	mlx_image_t	*collectible;
 	mlx_image_t	*ennemy;
 	mlx_image_t	*door;
+	mlx_image_t	*dark;
 	mlx_image_t	*test_cat;
 
 }			t_tile;
