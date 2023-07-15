@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/14 16:28:30 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/15 01:19:02 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,7 @@ void	ft_error_mlx(void);
 int		char_count(char x, char arr[][MAX_TILES_X]);
 int		map_legal(t_data *data, char map[][MAX_TILES_X]);
 void    world_events(t_data *data);
+void flood_fill(t_data *data, int x, int y, int distance);
+t_co	where_is(int skip, char c, char map[][MAX_TILES_X]);
 
 #endif
