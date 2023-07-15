@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 23:41:08 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/14 15:48:43 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void    rendering(t_data *data)
 	printf("FT: put_object()...\n");
 	put_object(data);
 	mlx_image_to_window(data->mlx, data->tiles->dark, 0, 0);
+    mlx_put_string(data->mlx, ft_itoa(data->player.x), 5, 5);
+    mlx_put_string(data->mlx, ft_itoa(data->player.y), 5, 25);
 	data->tiles_old = data->tiles;
 }

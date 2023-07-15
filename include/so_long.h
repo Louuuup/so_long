@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 22:41:47 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/14 16:28:30 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@
 # define MAX_RANGE 16
 # define READ_BUFFER 256
 # define RANDOM_SEED 916
-//==================Aliases=================//
-
+//==================TILES=================//
+# define ZOMBIE 'Z'
+# define PLAYER 'P'
+# define WALL '1'
+# define FLOOR '0'
+# define KEY 'C'
+# define EXIT 'E'
 //==================Files===================//
 # define FILE_TEST "./textures/128px/floor0.png"
 # define MAP "./maps/labyrinth.ber"
@@ -60,6 +65,7 @@ typedef struct textures
 	mlx_texture_t	*test_cat;
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*player[4];
+	mlx_texture_t	*zombie[4];
 	mlx_texture_t	*ennemy;
 	mlx_texture_t	*floor[8];
 	mlx_texture_t	*wall[25];
@@ -73,6 +79,7 @@ typedef struct images
 	mlx_image_t	*floor[8];
 	mlx_image_t	*wall[25];
 	mlx_image_t	*player;
+	mlx_image_t	*zombie;
 	mlx_image_t	*collectible;
 	mlx_image_t	*ennemy;
 	mlx_image_t	*door;
@@ -93,8 +100,10 @@ typedef	struct	data
 	t_co				player;
 	t_co				anchor;
 	char				map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
+	int					distance_map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
 	int					player_base_depth;
 	int					player_facing;
+	int					zombie_facing;
 	unsigned long long	rdm_key;
 	
 }			t_data;
@@ -144,5 +153,6 @@ void	put_object(t_data	*data);
 void	ft_error_mlx(void);
 int		char_count(char x, char arr[][MAX_TILES_X]);
 int		map_legal(t_data *data, char map[][MAX_TILES_X]);
+void    world_events(t_data *data);
 
 #endif

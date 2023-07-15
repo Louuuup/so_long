@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 22:43:03 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/14 15:31:52 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ static void texture_grab(t_txt* textures)
     textures->player[1] = mlx_load_png("./textures/player_r.png");
     textures->player[2] = mlx_load_png("./textures/player_d.png");
     textures->player[3] = mlx_load_png("./textures/player_l.png");
+    textures->zombie[0] = mlx_load_png("./textures/zombie_u.png");
+    textures->zombie[1] = mlx_load_png("./textures/zombie_r.png");
+    textures->zombie[2] = mlx_load_png("./textures/zombie_d.png");
+    textures->zombie[3] = mlx_load_png("./textures/zombie_l.png");
     
     if (!textures->floor[0] || !textures->floor[1] || !textures->floor[2] || !textures->floor[3]
         || !textures->floor[4] || !textures->floor[5] || !textures->floor[6] || !textures->floor[7]
