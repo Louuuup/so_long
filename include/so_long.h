@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/15 01:19:02 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/17 14:18:46 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MAX_TILES_Y 64
 # define MAX_RANGE 16
 # define READ_BUFFER 256
-# define RANDOM_SEED 916
+# define RANDOM_SEED 915
 //==================TILES=================//
 # define ZOMBIE 'Z'
 # define PLAYER 'P'
@@ -79,7 +79,7 @@ typedef struct images
 	mlx_image_t	*floor[8];
 	mlx_image_t	*wall[25];
 	mlx_image_t	*player;
-	mlx_image_t	*zombie;
+	mlx_image_t	*zombie[4];
 	mlx_image_t	*collectible;
 	mlx_image_t	*ennemy;
 	mlx_image_t	*door;
@@ -151,10 +151,12 @@ void	texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 void	re_render(t_data *data);
 void	put_object(t_data	*data);
 void	ft_error_mlx(void);
-int		char_count(char x, char arr[][MAX_TILES_X]);
 int		map_legal(t_data *data, char map[][MAX_TILES_X]);
 void    world_events(t_data *data);
-void flood_fill(t_data *data, int x, int y, int distance);
+void 	flood_fill(t_data *data, int x, int y, int distance);
 t_co	where_is(int skip, char c, char map[][MAX_TILES_X]);
+int		char_count(char c, char arr[][MAX_TILES_X]);
+void    print_flood(t_data *data); // TMP
+
 
 #endif

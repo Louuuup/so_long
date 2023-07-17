@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/14 15:48:43 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:26:22 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	re_render(t_data *data)
 	if (!data->tiles)
 	{
 		printf("-----MALLOC ERROR-----\n");
-		return ;
+		;
 	}
 	texture_convert(data->mlx, data->textures, data->tiles);
 	rendering(data);

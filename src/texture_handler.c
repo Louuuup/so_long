@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/14 15:31:52 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:59:43 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,11 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     tiles->wall[23] = mlx_texture_to_image(mlx, textures->wall[23]);
     tiles->wall[24] = mlx_texture_to_image(mlx, textures->wall[24]);
     tiles->player = mlx_texture_to_image(mlx, textures->player[get_data()->player_facing]);
+    tiles->zombie[0] = mlx_texture_to_image(mlx, textures->zombie[0]);
+    tiles->zombie[1] = mlx_texture_to_image(mlx, textures->zombie[1]);
+    tiles->zombie[2] = mlx_texture_to_image(mlx, textures->zombie[2]);
+    tiles->zombie[3] = mlx_texture_to_image(mlx, textures->zombie[3]);
     tiles->dark = mlx_texture_to_image(mlx, textures->dark);
-
 }
 
 void texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles)

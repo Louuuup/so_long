@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 22:40:56 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/17 13:25:04 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void ft_error(void)
 	perror("ERROR:");
 	exit(EXIT_FAILURE);
 }
+
 void ft_error_mlx(void)
 {
 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
@@ -47,7 +48,7 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 	else if (keydata.key == MLX_KEY_ESCAPE && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		exit(EXIT_SUCCESS);
 	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-    	un_render(get_data()->mlx, get_data()->tiles);	
+    	world_events(get_data());
 }
 int main(void)
 {

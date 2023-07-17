@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/13 16:20:43 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:07:19 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	put_object(t_data	*data)
 	{
 		while (x <= (int)data->length && x <= data->player.x + MAX_RANGE)
 		{
-			if (data->map[y][x] == '1')
-			{
+			if (data->map[y][x] == WALL)
 				put_tile(data->mlx, data->tiles->wall[ft_rand(24, x, y)], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
-			}
-			else if (data->map[y][x] == 'P')
+			else if (data->map[y][x] == PLAYER)
 				put_tile(data->mlx, data->tiles->player, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			else if (data->map[y][x] == ZOMBIE)
+				put_tile(data->mlx, data->tiles->zombie[1], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
 			x++;
 		}
 		x = 0;
