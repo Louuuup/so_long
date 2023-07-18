@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:33:54 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/12 14:25:45 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:15:24 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_all(mlx_t	*mlx, t_txt *textures)
 	data = get_data();
 	data->mlx = mlx;
 	data->textures = textures;
+	data->player_alive = 1;
     data->player_facing = 1;
 	data->tiles = ft_calloc(1, sizeof(t_tile));
 	if (!data->tiles)

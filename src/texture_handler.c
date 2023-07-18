@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/17 13:59:43 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:51:33 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ static void texture_grab(t_txt* textures)
     textures->wall[23] = mlx_load_png("./textures/wall23.png");
     textures->wall[24] = mlx_load_png("./textures/wall24.png");
     textures->dark = mlx_load_png("./textures/dark.png");
+    textures->death_screen[0] = mlx_load_png("./textures/death0.png");
+    textures->death_screen[1] = mlx_load_png("./textures/death1.png");
+    textures->death_screen[2] = mlx_load_png("./textures/death2.png");
     // textures->door = mlx_load_png(FILE_TEST);
     // textures->ennemy = mlx_load_png(FILE_TEST);
     // textures->collectible = mlx_load_png(FILE_TEST);
@@ -111,6 +114,13 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     tiles->zombie[2] = mlx_texture_to_image(mlx, textures->zombie[2]);
     tiles->zombie[3] = mlx_texture_to_image(mlx, textures->zombie[3]);
     tiles->dark = mlx_texture_to_image(mlx, textures->dark);
+    tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
+    tiles->death_screen[0]->enabled = false;
+    tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);
+    tiles->death_screen[1]->enabled = false;
+    tiles->death_screen[2] = mlx_texture_to_image(mlx, textures->death_screen[2]);
+    tiles->death_screen[2]->enabled = false;
+    
 }
 
 void texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles)

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/17 13:25:04 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:23:16 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 		mv_down();
 	else if (keydata.key == MLX_KEY_ESCAPE && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		exit(EXIT_SUCCESS);
-	else if (keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
-    	world_events(get_data());
+	else if (keydata.key == MLX_KEY_DELETE && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
+    	ft_die();
+	else if (keydata.key == MLX_KEY_ENTER && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT) && !get_data()->player_alive)
+		menu_press();
 }
 int main(void)
 {

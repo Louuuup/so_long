@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/17 14:18:46 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:23:11 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct textures
 	mlx_texture_t	*wall[25];
 	mlx_texture_t	*door;
 	mlx_texture_t	*dark;
+	mlx_texture_t	*death_screen[3];
 
 }			t_txt;
 
@@ -83,8 +84,9 @@ typedef struct images
 	mlx_image_t	*collectible;
 	mlx_image_t	*ennemy;
 	mlx_image_t	*door;
-	mlx_image_t	*dark;
 	mlx_image_t	*test_cat;
+	mlx_image_t	*dark;
+	mlx_image_t	*death_screen[3];
 
 }			t_tile;
 
@@ -104,6 +106,7 @@ typedef	struct	data
 	int					player_base_depth;
 	int					player_facing;
 	int					zombie_facing;
+	int					player_alive; //1 = alive || 0 = dead.
 	unsigned long long	rdm_key;
 	
 }			t_data;
@@ -157,6 +160,11 @@ void 	flood_fill(t_data *data, int x, int y, int distance);
 t_co	where_is(int skip, char c, char map[][MAX_TILES_X]);
 int		char_count(char c, char arr[][MAX_TILES_X]);
 void    print_flood(t_data *data); // TMP
+void    flood_clean(t_data *data);
+void    ft_die(void);
+void    menu_up(t_data *data);
+void    menu_down(t_data *data);
+void    menu_press(void);
 
 
 #endif

@@ -19,7 +19,7 @@ SRC = \
     main.c         texture_handler.c   initialiser.c    put_tile.c    \
     parse.c        put_tile_utils.c    movements.c      collisions.c \
     layers.c       map_verifs.c        render.c         map_handler.c \
-    utils.c		   world_events.c      flood_fill.c
+    utils.c		   world_events.c      flood_fill.c		player_death.c
 #==============================================================================#
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
