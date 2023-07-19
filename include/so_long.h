@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/18 19:23:11 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:19:15 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef	struct	data
 	int					zombie_facing;
 	int					player_alive; //1 = alive || 0 = dead.
 	unsigned long long	rdm_key;
+	unsigned int		mv_count;
 	
 }			t_data;
 
@@ -148,7 +149,7 @@ void    un_render(mlx_t *mlx, t_tile *tiles);
 void    print_map(t_data *data);
 void	put_floor(t_data	*data);
 int		ft_rand(int range, int x, int y);
-void	ft_free(void **ptr);
+void	*ft_free(void *ptr);
 void    map_read(int fd, t_data *data);
 void	texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 void	re_render(t_data *data);

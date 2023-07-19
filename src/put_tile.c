@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/17 14:07:19 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:34:00 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,6 @@ void	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y)
 	else
 		return ;
 }
-
-//OLD BUT ON SAIT JAMAIS
-// int	parse_tiles(char c, mlx_image_t *tile)
-// {
-// 	int	i;
-// 	int	j;
-// 	t_data	*data;
-
-// 	data = get_data();
-// 	i = 0;
-// 	j = 0;
-// 	while (j < MAX_TILES_Y && j < data->player.y + MAX_RANGE)
-// 	{
-// 		while (i < MAX_TILES_X && i < data->player.x + MAX_RANGE)
-// 		{
-// 			if (data->map[j][i] == c)
-// 			{
-// 				// printf("Gerenating '%c' tile.\n", c);
-// 				put_tile(data->mlx, tile, iso_x(i, j, data->anchor.x), iso_y(i, j, data->anchor.y));
-// 			}
-// 			i++;
-// 		}
-// 		i = 0;
-// 		j++;
-// 	}
-// 	return (0);
-// }
 
 void	put_floor(t_data	*data)
 {
@@ -72,28 +45,37 @@ void	put_floor(t_data	*data)
 		y++;
 	}
 }
+static void put_other(int x, int y, t_data *data)
+{
+	if (data->map[y][x] == ZOMBIE)
+	{
+		put_tile(data->mlx, data->tiles->zombie[0], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		put_tile(data->mlx, data->tiles->zombie[1], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		put_tile(data->mlx, data->tiles->zombie[2], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		put_tile(data->mlx, data->tiles->zombie[3], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+	}
+}
 void	put_object(t_data	*data)
 {
 	int x;
 	int y;
 	
-	x = 0;
 	y = 0;
 	while (!(y >= data->player.y - MAX_RANGE))
 		y++;
 	while (y <= (int)data->height && y <= data->player.y + MAX_RANGE && y >= data->player.y - MAX_RANGE)
 	{
+		x = 0;
 		while (x <= (int)data->length && x <= data->player.x + MAX_RANGE)
 		{
 			if (data->map[y][x] == WALL)
 				put_tile(data->mlx, data->tiles->wall[ft_rand(24, x, y)], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
 			else if (data->map[y][x] == PLAYER)
 				put_tile(data->mlx, data->tiles->player, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
-			else if (data->map[y][x] == ZOMBIE)
-				put_tile(data->mlx, data->tiles->zombie[1], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+			else
+				put_other(x, y, data);
 			x++;
 		}
-		x = 0;
 		y++;
 	}
 }

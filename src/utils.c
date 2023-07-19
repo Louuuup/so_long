@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:02:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/18 17:30:55 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:24:34 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,11 @@ t_co	where_is(int skip, char c, char map[][MAX_TILES_X])
 	return (co);
 }
 
-void	ft_free(void **ptr)
+void	*ft_free(void *ptr)
 {
-	if (*ptr)
-	{
-		free(*ptr);
-		*ptr = NULL;
-	}
-	return ;	
+	if (ptr != NULL)
+		free(ptr);
+	return (NULL);	
 }
 
 void   ft_swap(char *a, char *b)

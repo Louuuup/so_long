@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/18 18:44:46 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/19 14:28:13 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    un_render(mlx_t *mlx, t_tile *tiles_old)
 		mlx_delete_image(mlx, tiles_old->death_screen[1]);
 		mlx_delete_image(mlx, tiles_old->death_screen[2]);
 		mlx_delete_image(mlx, tiles_old->dark);
-		ft_free((void *)&tiles_old);
+		ft_free((void *)tiles_old);
 	}
 }
 
@@ -56,6 +56,9 @@ void	re_render(t_data *data)
 
 void    rendering(t_data *data)
 {
+	char *ptr;
+
+	ptr = NULL;
 	printf("FT: player_placement()...\n");
 	player_placement(data);
 	printf("FT: put_floor()...\n");
@@ -66,7 +69,14 @@ void    rendering(t_data *data)
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[0], 0, 0);
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[1], 0, 0);
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[2], 0, 0);
-    mlx_put_string(data->mlx, ft_itoa(data->player.x), 5, 5);
-    mlx_put_string(data->mlx, ft_itoa(data->player.y), 5, 25);
+	ptr = ft_strjoin("X: ", ft_itoa(data->player.x));
+    mlx_put_string(data->mlx, ptr, 5, 5);
+	ptr = ft_free((void *)ptr);
+	ptr = ft_strjoin("Y: ", ft_itoa(data->player.y));
+    mlx_put_string(data->mlx, ptr, 5, 25);
+	ptr = ft_free((void *)ptr);
+	ptr = ft_strjoin("MOVES: ", ft_itoa(data->mv_count));
+    mlx_put_string(data->mlx, ptr, 5, 50);
+	ptr = ft_free((void *)ptr);
 	data->tiles_old = data->tiles;
 }

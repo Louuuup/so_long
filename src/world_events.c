@@ -6,14 +6,33 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/07/18 17:31:45 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:23:14 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void zombie_move(t_co zombie, t_data *data)
+{
+    t_co dest;
+	
+	dest.x = zombie.x;
+	dest.y = zombie.y;
+    if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL)
+		dest.y++;
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL)
+		dest.x++;
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL)
+		dest.y--;
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL)
+		dest.x--;
+		if (data->map[dest.y][dest.x] == PLAYER)
+			return (ft_die());
+	    ft_swap(&data->map[zombie.y][zombie.x], &data->map[dest.y][dest.x]);
+}
+
 // NB of zombies in map
-static void zombie_move(int nb, t_data *data)
+static void zombie_think(int nb, t_data *data)
 {
     t_co player;
     t_co zombie[nb];
@@ -35,6 +54,9 @@ static void zombie_move(int nb, t_data *data)
 	i = 0;
 	while (i < nb)
     {
+		data->rdm_key *= data->rdm_key;
+		if (ft_rand(3, zombie->x / zombie->y, data->mv_count) < 2)
+        	zombie_move(zombie[i], data);
 		printf("Distance of %d between zombie and player\n", data->distance_map[zombie[i].y][zombie[i].x] - 2);
 		i++;
 	}
@@ -43,5 +65,6 @@ static void zombie_move(int nb, t_data *data)
 
 void    world_events(t_data *data)
 {
-    zombie_move(char_count(ZOMBIE, data->map), data);
+	if (data->player_alive)
+ 	   zombie_think(char_count(ZOMBIE, data->map), data);
 }

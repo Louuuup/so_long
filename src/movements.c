@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:08:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/18 19:08:08 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:16:38 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void    mv_right(void)
         else if (data->map[co->y][co->x + 1] != WALL && data->map[co->y][co->x + 1] != ZOMBIE)
         {
 		    ft_swap(&data->map[co->y][co->x], &data->map[co->y][co->x + 1]);
-       		re_render(data);
 		}
+        data->mv_count++;
 		world_events(get_data());
+       	if (data->player_alive)
+            re_render(data);
     }
 }
 
@@ -51,9 +53,11 @@ void    mv_left(void)
         else if (data->map[co->y][co->x - 1] != WALL)
 		{
             ft_swap(&data->map[co->y][co->x], &data->map[co->y][co->x - 1]);
-			re_render(data);
 		}
+        data->mv_count++;
        	world_events(get_data());
+       	if (data->player_alive)
+		    re_render(data);
     }
 }
 
@@ -73,9 +77,11 @@ void    mv_up(void)
         else if (data->map[co->y - 1][co->x] != WALL)
         {
 		    ft_swap(&data->map[co->y][co->x], &data->map[co->y - 1][co->x]);
-	        re_render(data);
 		}
+        data->mv_count++;
 	    world_events(get_data());
+       	if (data->player_alive)
+	        re_render(data);
     }
 	else
 		menu_up(data);
@@ -97,9 +103,11 @@ void    mv_down(void)
         else if (data->map[co->y + 1][co->x] != WALL)
         {
 		    ft_swap(&data->map[co->y][co->x], &data->map[co->y + 1][co->x]);
-	        re_render(data);
 		}
+        data->mv_count++;
 	    world_events(get_data());
+       	if (data->player_alive)
+	        re_render(data);
     }
 	else
 		menu_down(data);
