@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:08:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/19 15:16:38 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:37:22 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    mv_right(void)
     co = &data->player;
 	if (data->player_alive)
     {
-        printf("(%d,%d)", co->x, co->y);
+        // printf("(%d,%d)\n", co->x, co->y);
         data->player_facing = 1;
         if (data->map[co->y][co->x + 1] == ZOMBIE)
             ft_die();
@@ -46,7 +46,7 @@ void    mv_left(void)
     
 	if (data->player_alive)
     {
-        printf("(%d,%d)", co->x, co->y);
+        // printf("(%d,%d)\n", co->x, co->y);
         data->player_facing = 3;
         if (data->map[co->y][co->x - 1] == ZOMBIE)
             ft_die();
@@ -70,7 +70,7 @@ void    mv_up(void)
     co = &data->player;
 	if (data->player_alive)
     {
-        printf("(%d,%d)", co->x, co->y);
+        // printf("(%d,%d)\n", co->x, co->y);
         data->player_facing = 0;
         if (data->map[co->y - 1][co->x] == ZOMBIE)
             ft_die();
@@ -96,7 +96,7 @@ void    mv_down(void)
         co = &data->player;
 	if (data->player_alive)
     {
-        printf("(%d,%d)", co->x, co->y);
+        // printf("(%d,%d)\n", co->x, co->y);
         data->player_facing = 2;
         if (data->map[co->y + 1][co->x] == ZOMBIE)
             ft_die();

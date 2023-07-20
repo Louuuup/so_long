@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/19 14:19:15 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:51:02 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define MAX_RANGE 16
 # define READ_BUFFER 256
 # define RANDOM_SEED 915
+# define MAX_ZOMBIES 4
 //==================TILES=================//
 # define ZOMBIE 'Z'
 # define PLAYER 'P'
@@ -39,6 +40,14 @@
 # define FILE_TEST "./textures/128px/floor0.png"
 # define MAP "./maps/labyrinth.ber"
 //================Directions=================//
+enum e_dir
+{
+	UP = 0,
+	RIGHT = 1,
+	DOWN = 2,
+	LEFT = 3
+};
+
 //					  0
 //					3 + 1						
 //        		      2
@@ -105,7 +114,8 @@ typedef	struct	data
 	int					distance_map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
 	int					player_base_depth;
 	int					player_facing;
-	int					zombie_facing;
+	int					zombie_facing[MAX_ZOMBIES]; //-1 if dosent exist.
+	int					zombie_count;
 	int					player_alive; //1 = alive || 0 = dead.
 	unsigned long long	rdm_key;
 	unsigned int		mv_count;

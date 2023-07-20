@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:26:16 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/19 15:12:16 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:35:20 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ void    ft_die(void)
     
 	printf("\n\n\nplayer died\n");
     data = get_data();
-    data->player_alive = 0;
-    data->tiles_old->player->enabled = false;
-    data->tiles->death_screen[1]->enabled = true;
+    if (data->player_alive)
+    {
+        data->player_alive = 0;
+        data->tiles_old->player->enabled = false;
+        data->tiles->death_screen[1]->enabled = true;
+    }
 }
 
 void    menu_up(t_data *data)
@@ -47,6 +50,7 @@ void    menu_press(void)
     if (data->tiles->death_screen[1]->enabled)
     {
 		data->player_alive = 1;
+        data->tiles->player->enabled = true;
         data->tiles->death_screen[1]->enabled = false;
         parse_main(data->mlx, data->tiles);
 		data->mv_count = 0;

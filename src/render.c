@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/19 14:28:13 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:37:34 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void    un_render(mlx_t *mlx, t_tile *tiles_old)
 	i = 0;
 	if	(tiles_old)
 	{
+		tiles_old->player->enabled = true;
   		mlx_delete_image(mlx, tiles_old->player);
 		while (i < 25)
 		{
@@ -59,11 +60,8 @@ void    rendering(t_data *data)
 	char *ptr;
 
 	ptr = NULL;
-	printf("FT: player_placement()...\n");
 	player_placement(data);
-	printf("FT: put_floor()...\n");
     put_floor(data);
-	printf("FT: put_object()...\n");
 	put_object(data);
 	mlx_image_to_window(data->mlx, data->tiles->dark, 0, 0);
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[0], 0, 0);

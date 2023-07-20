@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:33:54 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/18 18:15:24 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:58:29 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	init_all(mlx_t	*mlx, t_txt *textures)
 { 
 	t_data	*data;
+	int i;
 
+	i = 0;
 	data = get_data();
 	data->mlx = mlx;
 	data->textures = textures;
@@ -26,6 +28,11 @@ void	init_all(mlx_t	*mlx, t_txt *textures)
 	{
 		printf("-----MALLOC ERROR-----\n");
 		return ;
+	}
+	while (i < MAX_ZOMBIES)
+	{
+		data->zombie_facing[i] = -1;
+		i++;
 	}
 	data->tiles_old = NULL;
 	data->rdm_key = RANDOM_SEED;

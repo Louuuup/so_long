@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/19 15:34:00 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:52:44 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	put_floor(t_data	*data)
 }
 static void put_other(int x, int y, t_data *data)
 {
-	if (data->map[y][x] == ZOMBIE)
+
+	if (data->map[y][x] == ZOMBIE && data->zombie_facing[data->zombie_count] >= 0)
 	{
-		put_tile(data->mlx, data->tiles->zombie[0], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
-		put_tile(data->mlx, data->tiles->zombie[1], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
-		put_tile(data->mlx, data->tiles->zombie[2], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
-		put_tile(data->mlx, data->tiles->zombie[3], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		printf("here I place zombie #%d looking %d\n", data->zombie_count, data->zombie_facing[data->zombie_count]);
+		put_tile(data->mlx, data->tiles->zombie[data->zombie_facing[data->zombie_count]], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		data->zombie_count++;
 	}
 }
 void	put_object(t_data	*data)
@@ -61,6 +61,7 @@ void	put_object(t_data	*data)
 	int y;
 	
 	y = 0;
+	data->zombie_count = 0;
 	while (!(y >= data->player.y - MAX_RANGE))
 		y++;
 	while (y <= (int)data->height && y <= data->player.y + MAX_RANGE && y >= data->player.y - MAX_RANGE)
