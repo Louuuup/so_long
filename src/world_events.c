@@ -3,32 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   world_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/07/19 15:23:14 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/20 00:21:15 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void zombie_move(t_co zombie, t_data *data)
+static void zombie_turn(t_co zombie, int nb, int dir, t_data *data)
+{
+    data->tiles->zombie[dir]->instances[0].enabled
+static void zombie_move(int nb, t_co zombie, t_data *data)
 {
     t_co dest;
 	
 	dest.x = zombie.x;
 	dest.y = zombie.y;
     if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL)
+    {
 		dest.y++;
+        
+    }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL)
-		dest.x++;
+    {
+    	dest.x++;
+    }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL)
-		dest.y--;
+	{
+    	dest.y--;
+    }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL)
-		dest.x--;
-		if (data->map[dest.y][dest.x] == PLAYER)
-			return (ft_die());
-	    ft_swap(&data->map[zombie.y][zombie.x], &data->map[dest.y][dest.x]);
+	{
+    	dest.x--;
+	}
+    if (data->map[dest.y][dest.x] == PLAYER)
+		return (ft_die());
+	ft_swap(&data->map[zombie.y][zombie.x], &data->map[dest.y][dest.x]);
 }
 
 // NB of zombies in map
@@ -56,7 +67,7 @@ static void zombie_think(int nb, t_data *data)
     {
 		data->rdm_key *= data->rdm_key;
 		if (ft_rand(3, zombie->x / zombie->y, data->mv_count) < 2)
-        	zombie_move(zombie[i], data);
+        	zombie_move(nb, zombie[i], data);
 		printf("Distance of %d between zombie and player\n", data->distance_map[zombie[i].y][zombie[i].x] - 2);
 		i++;
 	}
