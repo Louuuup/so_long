@@ -6,16 +6,26 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 16:55:30 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:54:17 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "so_long.h"
 
 
 
 static void texture_grab(t_txt* textures)
 {
+    // int i;
+    // i = -1;
+    // int		fd;
+	
+    // fd = 0;
+	// fd = open("./textures/paths.txt", O_RDONLY);
+	// if (fd < 0)
+	// 	exit (ERROR);
+    // while (++i < 8)
+    //     printf("%s", get_next_line(fd));
     textures->floor[0] = mlx_load_png("./textures/floor0.png");
     textures->floor[1] = mlx_load_png("./textures/floor1.png");
     textures->floor[2] = mlx_load_png("./textures/floor2.png");
@@ -49,7 +59,21 @@ static void texture_grab(t_txt* textures)
     textures->wall[22] = mlx_load_png("./textures/wall22.png");
     textures->wall[23] = mlx_load_png("./textures/wall23.png");
     textures->wall[24] = mlx_load_png("./textures/wall24.png");
-    textures->dark = mlx_load_png("./textures/dark1.png");
+    textures->dark[0] = mlx_load_png("./textures/shadow0.png");
+    textures->dark[1] = mlx_load_png("./textures/shadow1.png");
+    textures->dark[2] = mlx_load_png("./textures/shadow2.png");
+    textures->dark[3] = mlx_load_png("./textures/shadow3.png");
+    textures->dark[4] = mlx_load_png("./textures/shadow4.png");
+    textures->dark[5] = mlx_load_png("./textures/shadow5.png");
+    textures->dark[6] = mlx_load_png("./textures/shadow6.png");
+    textures->dark[7] = mlx_load_png("./textures/shadow7.png");
+    textures->dark[8] = mlx_load_png("./textures/shadow8.png");
+    textures->dark[9] = mlx_load_png("./textures/shadow9.png");
+    textures->dark[10] = mlx_load_png("./textures/shadow10.png");
+    textures->dark[11] = mlx_load_png("./textures/shadow11.png");
+    textures->dark[12] = mlx_load_png("./textures/shadow12.png");
+    textures->dark[13] = mlx_load_png("./textures/shadow13.png");
+    textures->dark[14] = mlx_load_png("./textures/shadow14.png");
     textures->death_screen[0] = mlx_load_png("./textures/death0.png");
     textures->death_screen[1] = mlx_load_png("./textures/death1.png");
     textures->death_screen[2] = mlx_load_png("./textures/death2.png");
@@ -76,7 +100,7 @@ static void texture_grab(t_txt* textures)
         || !textures->floor[4] || !textures->floor[5] || !textures->floor[6] || !textures->floor[7]
         || !textures->wall[0] || !textures->wall[1] || !textures->wall[2] || !textures->wall[3]
         || !textures->wall[4] || !textures->wall[5] || !textures->player[0] || !textures->player[1]
-        || !textures->player[2] || !textures->player[3] || !textures->dark)
+        || !textures->player[2] || !textures->player[3] || !textures->dark[0])
         ft_error_mlx();
 }
 
@@ -85,17 +109,19 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     int i;
 
     i = -1;
-    while (++i < 8)
+    while (++i < NB_FLOOR_TX)
         tiles->floor[i] = mlx_texture_to_image(mlx, textures->floor[i]);
     i = -1;
-    while (++i < 25)
+    while (++i < NB_WALL_TX)
         tiles->wall[i] = mlx_texture_to_image(mlx, textures->wall[i]);
     i = -1;
     tiles->player = mlx_texture_to_image(mlx, textures->player[get_data()->player_facing]);
-    while (++i < 4)
+    while (++i < NB_ZOMBIE_TX)
         tiles->zombie[i] = mlx_texture_to_image(mlx, textures->zombie[i]);
     i = -1;
-    tiles->dark = mlx_texture_to_image(mlx, textures->dark);
+    while (i++ < NB_DARK_TX)
+        tiles->dark[i] = mlx_texture_to_image(mlx, textures->dark[i]);
+    i = -1;
     while (++i < 8)
       tiles->key[i] = mlx_texture_to_image(mlx, textures->key[i]);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);

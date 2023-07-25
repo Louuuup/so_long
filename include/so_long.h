@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 16:36:26 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:52:58 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 # define FLOOR '0'
 # define KEY 'C'
 # define EXIT 'E'
+//==============TEXTURES_COUNT===============//
+# define NB_WALL_TX 25
+# define NB_FLOOR_TX 8
+# define NB_ZOMBIE_TX 4
+# define NB_PLAYER_TX 4
+# define NB_KEY_TX 8
+# define NB_DARK_TX 15
 //==================Files===================//
 # define FILE_TEST "./textures/128px/floor0.png"
 # define MAP "./maps/labyrinth.ber"
@@ -79,7 +86,7 @@ typedef struct textures
 	mlx_texture_t	*wall[25];
 	mlx_texture_t	*key[8];
 	mlx_texture_t	*door;
-	mlx_texture_t	*dark;
+	mlx_texture_t	*dark[15];
 	mlx_texture_t	*death_screen[3];
 
 }			t_txt;
@@ -92,9 +99,9 @@ typedef struct images
 	mlx_image_t	*zombie[4];
 	mlx_image_t	*collectible;
 	mlx_image_t	*door;
-	mlx_image_t	*key[7];
+	mlx_image_t	*key[8];
 	mlx_image_t	*test_cat;
-	mlx_image_t	*dark;
+	mlx_image_t	*dark[15];
 	mlx_image_t	*death_screen[3];
 
 }			t_tile;

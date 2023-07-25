@@ -1,0 +1,8 @@
+./textures/floor0.png
+./textures/floor1.png
+./textures/floor2.png
+./textures/floor3.png
+./textures/floor4.png
+./textures/floor5.png
+./textures/floor6.png
+./textures/floor7.png
