@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 21:15:42 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/25 15:46:37 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	player_placement(t_data *data)
 				// printf("(%d,%d) working, found P\n", x, y);
 				data->player.x = x;
 				data->player.y = y;
-				data->anchor.x = WIDTH / 2 - iso_x(x, y, 0);
-				data->anchor.y = HEIGHT / 2 - iso_y(x, y, 0);
+				data->anchor.x = WIDTH / 2 - iso_x(x, y, 0) - 64;
+				data->anchor.y = HEIGHT / 2 - iso_y(x, y, 0) - 32;
 				return ;
 			}
 			x++;

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/07/20 15:56:25 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:55:26 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ static void zombie_think(int nb, t_data *data)
 		i++;
 	}
 	// print_flood(data);
+}
+
+void    key_anim(void)
+{
+    
 }
 
 void    world_events(t_data *data)

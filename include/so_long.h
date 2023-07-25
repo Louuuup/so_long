@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 13:51:26 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/25 16:36:26 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct textures
 	mlx_texture_t	*zombie[4];
 	mlx_texture_t	*floor[8];
 	mlx_texture_t	*wall[25];
-	mlx_texture_t	*key;
+	mlx_texture_t	*key[8];
 	mlx_texture_t	*door;
 	mlx_texture_t	*dark;
 	mlx_texture_t	*death_screen[3];
@@ -92,7 +92,7 @@ typedef struct images
 	mlx_image_t	*zombie[4];
 	mlx_image_t	*collectible;
 	mlx_image_t	*door;
-	mlx_image_t	*key;
+	mlx_image_t	*key[7];
 	mlx_image_t	*test_cat;
 	mlx_image_t	*dark;
 	mlx_image_t	*death_screen[3];
@@ -177,6 +177,9 @@ void    ft_die(void);
 void    menu_up(t_data *data);
 void    menu_down(t_data *data);
 void    menu_press(void);
+void    key_animation(t_data *data, int frame);
+void	collect_key(t_data *data, int x, int y);
+void	ft_info_onscreen(mlx_t *mlx, int x, int y, char *info);
 
 
 #endif

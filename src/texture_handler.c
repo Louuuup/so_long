@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 13:55:04 by yakary           ###   ########.fr       */
+/*   Updated: 2023/07/25 16:55:30 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,20 @@ static void texture_grab(t_txt* textures)
     textures->wall[22] = mlx_load_png("./textures/wall22.png");
     textures->wall[23] = mlx_load_png("./textures/wall23.png");
     textures->wall[24] = mlx_load_png("./textures/wall24.png");
-    textures->dark = mlx_load_png("./textures/dark.png");
+    textures->dark = mlx_load_png("./textures/dark1.png");
     textures->death_screen[0] = mlx_load_png("./textures/death0.png");
     textures->death_screen[1] = mlx_load_png("./textures/death1.png");
     textures->death_screen[2] = mlx_load_png("./textures/death2.png");
     // textures->door = mlx_load_png(FILE_TEST);
     // textures->ennemy = mlx_load_png(FILE_TEST);
-    textures->key = mlx_load_png("./textures/key0.png");
+    textures->key[0] = mlx_load_png("./textures/key0.png");
+    textures->key[1] = mlx_load_png("./textures/key1.png");
+    textures->key[2] = mlx_load_png("./textures/key2.png");
+    textures->key[3] = mlx_load_png("./textures/key3.png");
+    textures->key[4] = mlx_load_png("./textures/key4.png");
+    textures->key[5] = mlx_load_png("./textures/key5.png");
+    textures->key[6] = mlx_load_png("./textures/key6.png");
+    textures->key[7] = mlx_load_png("./textures/key7.png");
     textures->player[0] = mlx_load_png("./textures/player_u.png");
     textures->player[1] = mlx_load_png("./textures/player_r.png");
     textures->player[2] = mlx_load_png("./textures/player_d.png");
@@ -75,46 +82,22 @@ static void texture_grab(t_txt* textures)
 
 void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
 {
-    tiles->floor[0] = mlx_texture_to_image(mlx, textures->floor[0]);
-    tiles->floor[1] = mlx_texture_to_image(mlx, textures->floor[1]);
-    tiles->floor[2] = mlx_texture_to_image(mlx, textures->floor[2]);
-    tiles->floor[3] = mlx_texture_to_image(mlx, textures->floor[0]);
-    tiles->floor[4] = mlx_texture_to_image(mlx, textures->floor[4]);
-    tiles->floor[5] = mlx_texture_to_image(mlx, textures->floor[5]);
-    tiles->floor[6] = mlx_texture_to_image(mlx, textures->floor[6]);
-    tiles->floor[7] = mlx_texture_to_image(mlx, textures->floor[7]);
-    tiles->wall[0] = mlx_texture_to_image(mlx, textures->wall[0]);
-    tiles->wall[1] = mlx_texture_to_image(mlx, textures->wall[1]);
-    tiles->wall[2] = mlx_texture_to_image(mlx, textures->wall[2]);
-    tiles->wall[3] = mlx_texture_to_image(mlx, textures->wall[3]);
-    tiles->wall[4] = mlx_texture_to_image(mlx, textures->wall[4]);
-    tiles->wall[5] = mlx_texture_to_image(mlx, textures->wall[5]);
-    tiles->wall[6] = mlx_texture_to_image(mlx, textures->wall[6]);
-    tiles->wall[7] = mlx_texture_to_image(mlx, textures->wall[7]);
-    tiles->wall[8] = mlx_texture_to_image(mlx, textures->wall[8]);
-    tiles->wall[9] = mlx_texture_to_image(mlx, textures->wall[9]);
-    tiles->wall[10] = mlx_texture_to_image(mlx, textures->wall[10]);
-    tiles->wall[11] = mlx_texture_to_image(mlx, textures->wall[11]);
-    tiles->wall[12] = mlx_texture_to_image(mlx, textures->wall[12]);
-    tiles->wall[13] = mlx_texture_to_image(mlx, textures->wall[13]);
-    tiles->wall[14] = mlx_texture_to_image(mlx, textures->wall[14]);
-    tiles->wall[15] = mlx_texture_to_image(mlx, textures->wall[15]);
-    tiles->wall[16] = mlx_texture_to_image(mlx, textures->wall[16]);
-    tiles->wall[17] = mlx_texture_to_image(mlx, textures->wall[17]);
-    tiles->wall[18] = mlx_texture_to_image(mlx, textures->wall[18]);
-    tiles->wall[19] = mlx_texture_to_image(mlx, textures->wall[19]);
-    tiles->wall[20] = mlx_texture_to_image(mlx, textures->wall[20]);
-    tiles->wall[21] = mlx_texture_to_image(mlx, textures->wall[21]);
-    tiles->wall[22] = mlx_texture_to_image(mlx, textures->wall[22]);
-    tiles->wall[23] = mlx_texture_to_image(mlx, textures->wall[23]);
-    tiles->wall[24] = mlx_texture_to_image(mlx, textures->wall[24]);
+    int i;
+
+    i = -1;
+    while (++i < 8)
+        tiles->floor[i] = mlx_texture_to_image(mlx, textures->floor[i]);
+    i = -1;
+    while (++i < 25)
+        tiles->wall[i] = mlx_texture_to_image(mlx, textures->wall[i]);
+    i = -1;
     tiles->player = mlx_texture_to_image(mlx, textures->player[get_data()->player_facing]);
-    tiles->zombie[0] = mlx_texture_to_image(mlx, textures->zombie[0]);
-    tiles->zombie[1] = mlx_texture_to_image(mlx, textures->zombie[1]);
-    tiles->zombie[2] = mlx_texture_to_image(mlx, textures->zombie[2]);
-    tiles->zombie[3] = mlx_texture_to_image(mlx, textures->zombie[3]);
+    while (++i < 4)
+        tiles->zombie[i] = mlx_texture_to_image(mlx, textures->zombie[i]);
+    i = -1;
     tiles->dark = mlx_texture_to_image(mlx, textures->dark);
-    tiles->key = mlx_texture_to_image(mlx, textures->key);
+    while (++i < 8)
+      tiles->key[i] = mlx_texture_to_image(mlx, textures->key[i]);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
     tiles->death_screen[0]->enabled = false;
     tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);
