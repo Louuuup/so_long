@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_tile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/20 15:52:44 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:52:58 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,23 @@ void	put_floor(t_data	*data)
 		y++;
 	}
 }
+
 static void put_other(int x, int y, t_data *data)
 {
 
 	if (data->map[y][x] == ZOMBIE && data->zombie_facing[data->zombie_count] >= 0)
 	{
-		printf("here I place zombie #%d looking %d\n", data->zombie_count, data->zombie_facing[data->zombie_count]);
+		// printf("here I place zombie #%d looking %d\n", data->zombie_count, data->zombie_facing[data->zombie_count]);
 		put_tile(data->mlx, data->tiles->zombie[data->zombie_facing[data->zombie_count]], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
 		data->zombie_count++;
 	}
+	if (data->map[y][x] == KEY)
+	{
+		put_tile(data->mlx, data->tiles->key, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		data->key_count++;
+	}
 }
+
 void	put_object(t_data	*data)
 {
 	int x;

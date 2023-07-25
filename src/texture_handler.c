@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/20 14:33:16 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:55:04 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void texture_grab(t_txt* textures)
     textures->death_screen[2] = mlx_load_png("./textures/death2.png");
     // textures->door = mlx_load_png(FILE_TEST);
     // textures->ennemy = mlx_load_png(FILE_TEST);
-    // textures->collectible = mlx_load_png(FILE_TEST);
+    textures->key = mlx_load_png("./textures/key0.png");
     textures->player[0] = mlx_load_png("./textures/player_u.png");
     textures->player[1] = mlx_load_png("./textures/player_r.png");
     textures->player[2] = mlx_load_png("./textures/player_d.png");
@@ -114,6 +114,7 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     tiles->zombie[2] = mlx_texture_to_image(mlx, textures->zombie[2]);
     tiles->zombie[3] = mlx_texture_to_image(mlx, textures->zombie[3]);
     tiles->dark = mlx_texture_to_image(mlx, textures->dark);
+    tiles->key = mlx_texture_to_image(mlx, textures->key);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
     tiles->death_screen[0]->enabled = false;
     tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);

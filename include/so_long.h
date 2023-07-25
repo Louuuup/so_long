@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/20 15:51:02 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:51:26 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ typedef struct textures
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*player[4];
 	mlx_texture_t	*zombie[4];
-	mlx_texture_t	*ennemy;
 	mlx_texture_t	*floor[8];
 	mlx_texture_t	*wall[25];
+	mlx_texture_t	*key;
 	mlx_texture_t	*door;
 	mlx_texture_t	*dark;
 	mlx_texture_t	*death_screen[3];
@@ -91,8 +91,8 @@ typedef struct images
 	mlx_image_t	*player;
 	mlx_image_t	*zombie[4];
 	mlx_image_t	*collectible;
-	mlx_image_t	*ennemy;
 	mlx_image_t	*door;
+	mlx_image_t	*key;
 	mlx_image_t	*test_cat;
 	mlx_image_t	*dark;
 	mlx_image_t	*death_screen[3];
@@ -116,6 +116,7 @@ typedef	struct	data
 	int					player_facing;
 	int					zombie_facing[MAX_ZOMBIES]; //-1 if dosent exist.
 	int					zombie_count;
+	int					key_count;
 	int					player_alive; //1 = alive || 0 = dead.
 	unsigned long long	rdm_key;
 	unsigned int		mv_count;
