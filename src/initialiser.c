@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:33:54 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/20 14:58:29 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:35:11 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_all(mlx_t	*mlx, t_txt *textures)
 	i = 0;
 	data = get_data();
 	data->mlx = mlx;
+	data->key_found = 0;
 	data->textures = textures;
 	data->player_alive = 1;
     data->player_facing = 1;

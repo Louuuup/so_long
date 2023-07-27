@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 16:18:22 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:30:35 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,8 @@ static void event_hook(void* param)
 
 	i = 0;
 	sec = (int)mlx_get_time();
-	if (mlx_get_time() <= (double)sec + 0.125)
-		key_animation(get_data(), 0);
-	else if (mlx_get_time() <= (double)sec + 0.25)
-		key_animation(get_data(), 1);
-	else if (mlx_get_time() <= (double)sec + 0.375)
-		key_animation(get_data(), 2);
-	else if (mlx_get_time() <= (double)sec + 0.5)
-		key_animation(get_data(), 3);
-	else if (mlx_get_time() <= (double)sec + 0.625)
-		key_animation(get_data(), 4);
-	else if (mlx_get_time() <= (double)sec + 0.75)
-		key_animation(get_data(), 5);
-	else if (mlx_get_time() <= (double)sec + 0.875)
-		key_animation(get_data(), 6);
-	else
-		key_animation(get_data(), 7);
+	key_loop(get_data(), sec);
+	dark_grow(get_data());
 }
 int main(void)
 {

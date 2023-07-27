@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 18:52:58 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:17:14 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,11 @@ typedef	struct	coords
 
 typedef struct textures
 {
-	mlx_texture_t	*test_cat;
-	mlx_texture_t	*collectible;
 	mlx_texture_t	*player[4];
 	mlx_texture_t	*zombie[4];
 	mlx_texture_t	*floor[8];
 	mlx_texture_t	*wall[25];
 	mlx_texture_t	*key[8];
-	mlx_texture_t	*door;
 	mlx_texture_t	*dark[15];
 	mlx_texture_t	*death_screen[3];
 
@@ -93,14 +90,11 @@ typedef struct textures
 
 typedef struct images
 {
-	mlx_image_t	*floor[8];
-	mlx_image_t	*wall[25];
 	mlx_image_t	*player;
 	mlx_image_t	*zombie[4];
-	mlx_image_t	*collectible;
-	mlx_image_t	*door;
+	mlx_image_t	*floor[8];
+	mlx_image_t	*wall[25];
 	mlx_image_t	*key[8];
-	mlx_image_t	*test_cat;
 	mlx_image_t	*dark[15];
 	mlx_image_t	*death_screen[3];
 
@@ -124,7 +118,9 @@ typedef	struct	data
 	int					zombie_facing[MAX_ZOMBIES]; //-1 if dosent exist.
 	int					zombie_count;
 	int					key_count;
+	int					key_found;
 	int					player_alive; //1 = alive || 0 = dead.
+	int				 	light; //0 = brightest || 15 = almost no light
 	unsigned long long	rdm_key;
 	unsigned int		mv_count;
 	
@@ -184,9 +180,10 @@ void    ft_die(void);
 void    menu_up(t_data *data);
 void    menu_down(t_data *data);
 void    menu_press(void);
-void    key_animation(t_data *data, int frame);
 void	collect_key(t_data *data, int x, int y);
 void	ft_info_onscreen(mlx_t *mlx, int x, int y, char *info);
+void	key_loop(t_data *data, int sec);
+void	dark_grow(t_data *data);
 
 
 #endif
