@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/26 13:30:35 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:05:13 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void event_hook(void* param)
 	i = 0;
 	sec = (int)mlx_get_time();
 	key_loop(get_data(), sec);
-	dark_grow(get_data());
 }
 int main(void)
 {

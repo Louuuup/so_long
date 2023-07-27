@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/27 15:05:22 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:07:41 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void    un_render(mlx_t *mlx, t_tile *tiles_old)
 		mlx_delete_image(mlx, tiles_old->death_screen[1]);
 		mlx_delete_image(mlx, tiles_old->death_screen[2]);
 		i = -1;
-		while (++i < NB_DARK_TX)
-			mlx_delete_image(mlx, tiles_old->dark[i]);
+		mlx_delete_image(mlx, tiles_old->dark);
 		ft_free((void *)tiles_old);
 	}
 }
@@ -65,8 +64,7 @@ void    rendering(t_data *data)
 	player_placement(data);
     put_floor(data);
 	put_object(data);
-	while (++i < NB_DARK_TX)
-		mlx_image_to_window(data->mlx, data->tiles->dark[i], 0, 0);
+	mlx_image_to_window(data->mlx, data->tiles->dark, 0, 0);
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[0], 0, 0);
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[1], 0, 0);
 	mlx_image_to_window(data->mlx, data->tiles->death_screen[2], 0, 0);

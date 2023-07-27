@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:04:38 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/27 15:00:47 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:08:14 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ static void    key_animation(t_data *data, int frame)
     data->tiles->key[frame]->enabled = true;
 	data->key_count = char_count(KEY, data->map);
 }
+
+void	light_yagami(t_data *data)
+{
+	data->light = data->mv_count / 5 - data->key_found;
+	if (data->light < 0)
+		data->light = 0;
+	if (data->light > NB_DARK_TX)
+		data->light = NB_DARK_TX;
+}
+
 void	key_loop(t_data *data, int sec)
 {
 	if (mlx_get_time() <= (double)sec + 0.125)
@@ -44,21 +54,6 @@ void	key_loop(t_data *data, int sec)
 		key_animation(data, 7);
 }
 
-void	dark_grow(t_data *data)
-{
-	int i;
-
-	i = -1;
-	while (++i < NB_DARK_TX)
-  		data->tiles->dark[i]->enabled = false;
-	data->light = data->mv_count / 5 - data->key_found;
-	// printf("LIGHT IS %d\n", data->light);
-	// printf("keyfound IS %d\n", data->key_found);
-	if (data->light < 0)
-		data->light = 0;
-	if (data->light < NB_DARK_TX && !data->tiles->dark[data->light]->enabled)
- 		data->tiles->dark[data->light]->enabled = true;
-}
 
 void	collect_key(t_data *data, int x, int y)
 {

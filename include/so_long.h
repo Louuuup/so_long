@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/27 15:17:14 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:04:54 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct images
 	mlx_image_t	*floor[8];
 	mlx_image_t	*wall[25];
 	mlx_image_t	*key[8];
-	mlx_image_t	*dark[15];
+	mlx_image_t	*dark;
 	mlx_image_t	*death_screen[3];
 
 }			t_tile;
@@ -183,7 +183,6 @@ void    menu_press(void);
 void	collect_key(t_data *data, int x, int y);
 void	ft_info_onscreen(mlx_t *mlx, int x, int y, char *info);
 void	key_loop(t_data *data, int sec);
-void	dark_grow(t_data *data);
 
 
 #endif

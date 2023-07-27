@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 18:54:17 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:57:41 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,9 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     while (++i < NB_ZOMBIE_TX)
         tiles->zombie[i] = mlx_texture_to_image(mlx, textures->zombie[i]);
     i = -1;
-    while (i++ < NB_DARK_TX)
-        tiles->dark[i] = mlx_texture_to_image(mlx, textures->dark[i]);
-    i = -1;
     while (++i < 8)
       tiles->key[i] = mlx_texture_to_image(mlx, textures->key[i]);
+    tiles->dark = mlx_texture_to_image(mlx, textures->dark[get_data()->light]);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
     tiles->death_screen[0]->enabled = false;
     tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);
