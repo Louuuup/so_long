@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/27 15:57:41 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:54:35 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void texture_grab(t_txt* textures)
     textures->dark[14] = mlx_load_png("./textures/shadow14.png");
     textures->death_screen[0] = mlx_load_png("./textures/death0.png");
     textures->death_screen[1] = mlx_load_png("./textures/death1.png");
-    textures->death_screen[2] = mlx_load_png("./textures/death2.png");
     // textures->door = mlx_load_png(FILE_TEST);
     // textures->ennemy = mlx_load_png(FILE_TEST);
     textures->key[0] = mlx_load_png("./textures/key0.png");
@@ -87,6 +86,15 @@ static void texture_grab(t_txt* textures)
     textures->key[5] = mlx_load_png("./textures/key5.png");
     textures->key[6] = mlx_load_png("./textures/key6.png");
     textures->key[7] = mlx_load_png("./textures/key7.png");
+    textures->portal[0] = mlx_load_png("./textures/portal0.png");
+    textures->portal[1] = mlx_load_png("./textures/portal1.png");
+    textures->portal[2] = mlx_load_png("./textures/portal2.png");
+    textures->portal[3] = mlx_load_png("./textures/portal3.png");
+    textures->portal[4] = mlx_load_png("./textures/portal4.png");
+    textures->portal[5] = mlx_load_png("./textures/portal5.png");
+    textures->portal[6] = mlx_load_png("./textures/portal6.png");
+    textures->portal[7] = mlx_load_png("./textures/portal7.png");
+    textures->portal[8] = mlx_load_png("./textures/portal8.png");
     textures->player[0] = mlx_load_png("./textures/player_u.png");
     textures->player[1] = mlx_load_png("./textures/player_r.png");
     textures->player[2] = mlx_load_png("./textures/player_d.png");
@@ -119,15 +127,15 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     while (++i < NB_ZOMBIE_TX)
         tiles->zombie[i] = mlx_texture_to_image(mlx, textures->zombie[i]);
     i = -1;
-    while (++i < 8)
-      tiles->key[i] = mlx_texture_to_image(mlx, textures->key[i]);
+    while (++i < NB_KEY_TX)
+        tiles->key[i] = mlx_texture_to_image(mlx, textures->key[i]);
+    i = -1;
+    while (++i < NB_PORTAL_TX)
+        tiles->portal[i] = mlx_texture_to_image(mlx, textures->portal[i]);
     tiles->dark = mlx_texture_to_image(mlx, textures->dark[get_data()->light]);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
-    tiles->death_screen[0]->enabled = false;
     tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);
     tiles->death_screen[1]->enabled = false;
-    tiles->death_screen[2] = mlx_texture_to_image(mlx, textures->death_screen[2]);
-    tiles->death_screen[2]->enabled = false;
     
 }
 

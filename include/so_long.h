@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/27 16:04:54 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:40:37 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@
 # define WALL '1'
 # define FLOOR '0'
 # define KEY 'C'
-# define EXIT 'E'
+# define PORTAL 'E'
 //==============TEXTURES_COUNT===============//
 # define NB_WALL_TX 25
 # define NB_FLOOR_TX 8
 # define NB_ZOMBIE_TX 4
 # define NB_PLAYER_TX 4
 # define NB_KEY_TX 8
+# define NB_PORTAL_TX 9
 # define NB_DARK_TX 15
 //==================Files===================//
 # define FILE_TEST "./textures/128px/floor0.png"
@@ -83,8 +84,9 @@ typedef struct textures
 	mlx_texture_t	*floor[8];
 	mlx_texture_t	*wall[25];
 	mlx_texture_t	*key[8];
+	mlx_texture_t	*portal[9];
 	mlx_texture_t	*dark[15];
-	mlx_texture_t	*death_screen[3];
+	mlx_texture_t	*death_screen[2];
 
 }			t_txt;
 
@@ -93,6 +95,7 @@ typedef struct images
 	mlx_image_t	*player;
 	mlx_image_t	*zombie[4];
 	mlx_image_t	*floor[8];
+	mlx_image_t	*portal[9];
 	mlx_image_t	*wall[25];
 	mlx_image_t	*key[8];
 	mlx_image_t	*dark;
@@ -183,6 +186,7 @@ void    menu_press(void);
 void	collect_key(t_data *data, int x, int y);
 void	ft_info_onscreen(mlx_t *mlx, int x, int y, char *info);
 void	key_loop(t_data *data, int sec);
+void	portal_loop(t_data *data, int sec);
 
 
 #endif

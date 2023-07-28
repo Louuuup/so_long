@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/07/25 14:55:26 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:34:10 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 // nb = zombie # what
 static void zombie_turn(t_co zombie, int nb, int dir, t_data *data)
 {
-    (void)nb;
     (void)zombie;
     data->zombie_facing[nb] = dir;
 }
@@ -28,25 +27,21 @@ static void zombie_move(int nb, t_co zombie, t_data *data)
     {
 		dest.y++;
         zombie_turn(zombie, nb, DOWN, data);
-        printf("ZOMBIE #%d MOVING DOWN\n", nb);
     }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL && data->map[zombie.y][zombie.x + 1] != ZOMBIE)
     {
     	dest.x++;
         zombie_turn(zombie, nb, RIGHT, data);
-        printf("ZOMBIE #%d MOVING RIGHT\n", nb);
     }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL && data->map[zombie.y - 1][zombie.x] != ZOMBIE)
 	{
     	dest.y--;
         zombie_turn(zombie, nb, UP, data);
-        printf("ZOMBIE #%d MOVING UP\n", nb);
     }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL && data->map[zombie.y][zombie.x - 1] != ZOMBIE)
 	{
     	dest.x--;
         zombie_turn(zombie, nb, LEFT, data);
-        printf("ZOMBIE #%d MOVING LEFT\n", nb);
 	}
     if (data->map[dest.y][dest.x] == PLAYER)
 		return (ft_die());

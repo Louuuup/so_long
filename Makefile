@@ -20,7 +20,7 @@ SRC = \
     parse.c        put_tile_utils.c    movements.c      collisions.c \
     layers.c       map_verifs.c        render.c         map_handler.c \
     utils.c		   world_events.c      flood_fill.c		player_death.c \
-	on_screen.c
+	on_screen.c	   animations.c
 #==============================================================================#
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
@@ -66,7 +66,7 @@ endif
 #==============================================================================#
 all: mlx42 libft $(NAME)
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo "$(BLUE)$(BOLD)✅Compiling $(YELLOW)SO_LONG $(BLUE)→ $(RESET)$(CYAN)$(notdir $<)$(RESET)"
+	@echo "$(BLUE)$(BOLD)✅Compiling $(YELLOW)SO_LONG $(BLUE)→ $(RESET)$(CYAN)$(notdir $<)                    $(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 	@printf	$(UP)$(CUT)
 $(NAME): $(BIN_DIR) $(OBJS)

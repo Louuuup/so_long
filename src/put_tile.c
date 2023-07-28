@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 16:41:22 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:54:20 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void put_other(int x, int y, t_data *data)
 {
 	int i;
 	
-	i = 0;
 	if (data->map[y][x] == ZOMBIE && data->zombie_facing[data->zombie_count] >= 0)
 	{
 		// printf("here I place zombie #%d looking %d\n", data->zombie_count, data->zombie_facing[data->zombie_count]);
@@ -59,11 +58,15 @@ static void put_other(int x, int y, t_data *data)
 	}
 	if (data->map[y][x] == KEY)
 	{	
-		while (i < 8)
-		{
+		i = -1;
+		while (++i < NB_KEY_TX)
 			put_tile(data->mlx, data->tiles->key[i], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
-			i++;
-		}
+	}
+	else if (data->map[y][x] == PORTAL)
+	{
+		i = -1;
+		while (++i < NB_PORTAL_TX)
+			put_tile(data->mlx, data->tiles->portal[i], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
 	}
 }
 
