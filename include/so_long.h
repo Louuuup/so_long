@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/28 16:40:37 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:07:45 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void	collect_key(t_data *data, int x, int y);
 void	ft_info_onscreen(mlx_t *mlx, int x, int y, char *info);
 void	key_loop(t_data *data, int sec);
 void	portal_loop(t_data *data, int sec);
+char 	*rm_nl(char *str);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:02:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/19 14:24:34 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:31:57 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*ft_free(void *ptr)
 {
 	if (ptr != NULL)
 		free(ptr);
-	return (NULL);	
+	return (ptr);	
 }
 
 void   ft_swap(char *a, char *b)

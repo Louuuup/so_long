@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:20:10 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/25 18:36:46 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:59:49 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*get_next_line(int fd)
 	data.nl_idx = -1;
 	data.rd_out = 1;
 	data.stash = NULL;
+	// printf("oh no, a loop\n");
 	while (data.rd_out && data.nl_idx == -1)
 	{
 		if (data.buffer[0] == '\0')
