@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:26:16 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 14:08:12 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:00:33 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    menu_press(void)
     t_data *data;
 
     data = get_data();
-    if (data->tiles->death_screen[0]->enabled || data->tiles->win_screen[0])
+    if ((!data->player_alive && data->tiles->death_screen[0]->enabled) || (data->win && data->tiles->win_screen[0]->enabled))
     {
 		data->player_alive = 1;
         data->tiles->player->enabled = true;

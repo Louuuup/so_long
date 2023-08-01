@@ -25,9 +25,6 @@ SRC = \
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS = $(addprefix $(BIN_DIR)/, $(SRC:.c=.o))
 #==============================================================================#
-# the following 'SRCS' and 'OBJS' can be used while working on the project...
-# (instead of the previous 'SRC' 'SRCS' 'OBJS' targets and *.c files)
-#==============================================================================#
 # SRCS = $(wildcard $(SRC_DIR)/*.c)
 # OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 #==============================================================================#
@@ -38,12 +35,12 @@ MLX_DIR     = lib/MLX42
 MLX42       = $(MLX_DIR)/build/libmlx42.a
 LIBFT_DIR   = lib/libft
 LIBFT       = $(LIBFT_DIR)/libft.a
-# commandes shell
+#Shell cmd
 MKDIRP = mkdir -p
 RM = rm -f
 RM_DIR = rm -rf
 #==============================================================================#
-# headers you want to include
+# headers to include
 INCLUDES = -I$(LIBFT_DIR) -I$(INC_DIR) -I$(MLX_DIR)/$(INC_DIR)
 # things to link
 LFLAGS = -L$(GLFW_DIR) $(MLX42) $(LIBFT)

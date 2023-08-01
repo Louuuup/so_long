@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 13:55:24 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:46:56 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void texture_grab(t_txt *textures)
     int	    fd;
     
     i = -1;
-    fd = 0;
 	fd = open("./textures/paths.txt", O_RDONLY);
 	if (fd < 0)
 		exit (ERROR);
@@ -94,6 +93,5 @@ void texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles)
 {
     texture_grab(textures);
     texture_convert(mlx, textures, tiles);
-    printf("Texture Handling DONE\n");
 
 }

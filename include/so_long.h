@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 14:38:04 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:22:24 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define FLOOR '0'
 # define KEY 'C'
 # define PORTAL 'E'
+//=================KEYWORDS==================//
+# define NO 0
+# define YES 1
 //==============TEXTURES_COUNT===============//
 # define NB_WALL_TX 25
 # define NB_FLOOR_TX 8
@@ -178,6 +181,14 @@ void	put_object(t_data	*data);
 void	ft_error_mlx(void);
 int		map_legal(t_data *data, char map[][MAX_TILES_X]);
 void    world_events(t_data *data);
+/**
+ * NOTE: Fills data.distance with distance of player + 1
+*@param[in] data		t_data
+*@param[in] x 			X position
+*@param[in] y 			Y position
+*@param[in] distance 	for recursive purposes. 1 by default
+*@return		your mom
+*/
 void 	flood_fill(t_data *data, int x, int y, int distance);
 t_co	where_is(int skip, char c, char map[][MAX_TILES_X]);
 int		char_count(char c, char arr[][MAX_TILES_X]);
