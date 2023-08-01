@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/28 15:41:27 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:13:46 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void    un_render(mlx_t *mlx, t_tile *tiles_old)
 			mlx_delete_image(mlx, tiles_old->zombie[i]);
 			mlx_delete_image(mlx, tiles_old->death_screen[0]);
 			mlx_delete_image(mlx, tiles_old->death_screen[1]);
+			mlx_delete_image(mlx, tiles_old->win_screen[0]);
+			mlx_delete_image(mlx, tiles_old->win_screen[1]);
 		i = -1;
 		mlx_delete_image(mlx, tiles_old->dark);
 		ft_free((void *)tiles_old);
@@ -48,8 +50,8 @@ void	re_render(t_data *data)
 	data->tiles = ft_calloc(1, sizeof(t_tile));
 	if (!data->tiles)
 	{
-		printf("-----MALLOC ERROR-----\n");
-		;
+		printf("ERROR\nType: MALLOC");
+		exit(ERROR);
 	}
 	texture_convert(data->mlx, data->textures, data->tiles);
 	rendering(data);
@@ -69,6 +71,11 @@ void    rendering(t_data *data)
 	{
 		mlx_image_to_window(data->mlx, data->tiles->death_screen[0], 0, 0);
 		mlx_image_to_window(data->mlx, data->tiles->death_screen[1], 0, 0);
+	}
+	if (data->win)
+	{
+		mlx_image_to_window(data->mlx, data->tiles->win_screen[0], 0, 0);
+		mlx_image_to_window(data->mlx, data->tiles->win_screen[1], 0, 0);
 	}
 	ft_info_onscreen(data->mlx, 5, 5, ft_strjoin("X: ", ft_itoa(data->player.x)));
 	ft_info_onscreen(data->mlx, 5, 30, ft_strjoin("Y: ", ft_itoa(data->player.y)));

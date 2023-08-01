@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/07/28 15:34:10 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:35:28 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ static void zombie_think(int nb, t_data *data)
     while(i < nb)
     {
 		zombie[i] = where_is(i, ZOMBIE, data->map);
-   		printf("FOUND ZOMBIE #%d (%d,%d)\n", i, zombie[i].x, zombie[i].y);
 		i++;
     }
     // printf("FOUND P IN (%d,%d)\n", player.x, player.y);
     if (player.x < 1)
-        ft_error();
+        ft_error("Player not found");
     flood_clean(data);
     flood_fill(data, player.x, player.y, 1);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:10:21 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/11 20:14:21 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:47:58 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	map_legal(t_data *data, char map[][MAX_TILES_X])
 
     result = char_count('P', map);
     if (result < 1)
-		return (printf("ERROR >>> Need a player.\n"));
+		ft_error("Need a player.");
    	else if (result > 1)
-		return (printf("ERROR >>> Too many players. One max.\n"));
+		ft_error("Too many players. One max");
 	if (map_is_framed(data, map))
-		return (printf("ERROR >>> Walls(1) are needed all around the map.\n"));
+		ft_error("Walls(1) are needed all around the map");
 return (0);
 }

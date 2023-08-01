@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/28 16:54:20 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:39:24 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y)
 	// printf("x: %zu\n", x);
 	// printf("Placing tile at (%d,%d,%d)\n", x, y, i);
     if (i == -1)
-        ft_error();
+        ft_error_mlx();
 	else
 		return ;
 }

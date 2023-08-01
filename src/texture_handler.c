@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/31 14:12:15 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:55:24 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ static void texture_grab(t_txt *textures)
     while (++i < 2)
         textures->death_screen[i] = texture_inject(textures->death_screen[i], rm_nl(get_next_line(fd)));
     i = -1;
+    while (++i < 2)
+        textures->win_screen[i] = texture_inject(textures->win_screen[i], rm_nl(get_next_line(fd)));
+    i = -1;
     while (++i < NB_KEY_TX)
         textures->key[i] = texture_inject(textures->key[i], rm_nl(get_next_line(fd)));
     i = -1;
@@ -80,7 +83,10 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     tiles->dark = mlx_texture_to_image(mlx, textures->dark[get_data()->light]);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
     tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);
+    tiles->win_screen[0] = mlx_texture_to_image(mlx, textures->win_screen[0]);
+    tiles->win_screen[1] = mlx_texture_to_image(mlx, textures->win_screen[1]);
     tiles->death_screen[1]->enabled = false;
+    tiles->win_screen[1]->enabled = false;
     
 }
 

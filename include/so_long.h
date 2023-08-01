@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/31 13:07:45 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:38:04 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct textures
 	mlx_texture_t	*portal[9];
 	mlx_texture_t	*dark[15];
 	mlx_texture_t	*death_screen[2];
+	mlx_texture_t	*win_screen[2];
+	
 
 }			t_txt;
 
@@ -99,7 +101,8 @@ typedef struct images
 	mlx_image_t	*wall[25];
 	mlx_image_t	*key[8];
 	mlx_image_t	*dark;
-	mlx_image_t	*death_screen[3];
+	mlx_image_t	*death_screen[2];
+	mlx_image_t	*win_screen[2];
 
 }			t_tile;
 
@@ -123,6 +126,7 @@ typedef	struct	data
 	int					key_count;
 	int					key_found;
 	int					player_alive; //1 = alive || 0 = dead.
+	int					win;        // = win || 0 = no win
 	int				 	light; //0 = brightest || 15 = almost no light
 	unsigned long long	rdm_key;
 	unsigned int		mv_count;
@@ -147,7 +151,7 @@ void	texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 *@return		your mom
 */
 void	tile_display(mlx_t* mlx, mlx_image_t* img, int x, int y);
-void	ft_error(void);
+void	ft_error(char *str);
 void	parse_main(mlx_t *mlx, t_tile *tiles);
 void	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y);
 t_data	*get_data(void); //Singleton
@@ -188,6 +192,7 @@ void	ft_info_onscreen(mlx_t *mlx, int x, int y, char *info);
 void	key_loop(t_data *data, int sec);
 void	portal_loop(t_data *data, int sec);
 char 	*rm_nl(char *str);
+void    ft_win();
 
 
 #endif

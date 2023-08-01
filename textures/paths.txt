@@ -48,6 +48,8 @@
 ./textures/shadow14.png
 ./textures/death0.png
 ./textures/death1.png
+./textures/win0.png
+./textures/win1.png
 ./textures/key0.png
 ./textures/key1.png
 ./textures/key2.png

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:08:16 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/31 13:58:09 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:45:26 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,18 @@ char	*rm_nl(char *str)
 		i++;
 	}
 	return (str);
+}
+
+void ft_error(char *str)
+{
+	ft_putstr_fd("ERROR >>> ", 2);	
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);	
+	exit(EXIT_FAILURE);
+}
+
+void ft_error_mlx(void)
+{
+	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	exit(EXIT_FAILURE);
 }
