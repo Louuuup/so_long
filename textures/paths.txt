@@ -67,6 +67,7 @@
 ./textures/portal6.png
 ./textures/portal7.png
 ./textures/portal8.png
+./textures/portal_off.png
 ./textures/player_u.png
 ./textures/player_r.png
 ./textures/player_d.png

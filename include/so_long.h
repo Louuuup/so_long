@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 11:56:43 by yakary           ###   ########.fr       */
+/*   Updated: 2023/08/02 15:54:05 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct textures
 	mlx_texture_t	*wall[25];
 	mlx_texture_t	*key[8];
 	mlx_texture_t	*portal[9];
+	mlx_texture_t	*portal_off;
 	mlx_texture_t	*dark[15];
 	mlx_texture_t	*death_screen[2];
 	mlx_texture_t	*win_screen[2];
@@ -101,6 +102,7 @@ typedef struct images
 	mlx_image_t	*zombie[4];
 	mlx_image_t	*floor[8];
 	mlx_image_t	*portal[9];
+	mlx_image_t	*portal_off;
 	mlx_image_t	*wall[25];
 	mlx_image_t	*key[8];
 	mlx_image_t	*dark;
@@ -120,6 +122,7 @@ typedef	struct	data
 	t_co				start;
 	t_co				player;
 	t_co				anchor;
+	char				base_map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
 	char				map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
 	int					distance_map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
 	int					player_base_depth;
@@ -174,7 +177,7 @@ void    print_map(t_data *data);
 void	put_floor(t_data	*data);
 int		ft_rand(int range, int x, int y);
 void	*ft_free(void *ptr);
-void    map_read(int fd, t_data *data);
+void    map_read(int fd, t_data *data, int x, int y);
 void	texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles);
 void	re_render(t_data *data);
 void	put_object(t_data	*data);
@@ -204,6 +207,21 @@ void	key_loop(t_data *data, int sec);
 void	portal_loop(t_data *data, int sec);
 char 	*rm_nl(char *str);
 void    ft_win();
+/**
+ * NOTE: Moves player or zombie in specified direction, and cleans tile left behind.
+*@param[in] src		t_data
+*@param[in] x_m 	X modificator (if entity moving on x axis) 0 if none
+*@param[in] y_m 	Y modificator (if entity moving on y axis) 0 if none
+*@param[in] data 	t_data
+*@return		your mom
+*/
+void	ft_move(t_co src, int x_m, int y_m, t_data *data);
+/**
+ * NOTE: Removes entities(zombie or players) from base_map. 
+*@param[in] data 	t_data
+*@return		your mom
+*/
+void	base_map_clean(t_data *data);
 
 
 #endif

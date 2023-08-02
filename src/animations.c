@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:34:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/28 16:54:50 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:31:14 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void    key_animation(t_data *data, int frame)
 	while (++i < NB_KEY_TX)
   		data->tiles->key[i]->enabled = false;
     data->tiles->key[frame]->enabled = true;
-	data->key_count = char_count(KEY, data->map); //Move somewhere else if laggy.
 }
 
 static void    portal_animation(t_data *data, int frame)

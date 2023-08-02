@@ -17,9 +17,9 @@ CC = gcc
 CFLAGS =  -Wunreachable-code -Ofast -g
 SRC = \
     main.c         texture_handler.c   initialiser.c    put_tile.c    \
-    parse.c        put_tile_utils.c    movements.c      collisions.c \
-    layers.c       map_verifs.c        render.c         map_handler.c \
-    utils.c		   world_events.c      flood_fill.c		player_death.c \
+    parse.c        put_tile_utils.c    movements.c 		test_utils.c   \
+    layers.c       map_verifs.c        render.c         map_handler.c   \
+    utils.c		   world_events.c      flood_fill.c		player_death.c   \
 	utils1.c       on_screen.c	 	   animations.c		player_win.c 
 #==============================================================================#
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:04:38 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/28 16:35:17 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:15:06 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	light_yagami(t_data *data)
 {
-	data->light = data->mv_count / 5 - data->key_found;
+	data->light = data->mv_count / 1 - data->key_found;
 	if (data->light < 0)
 		data->light = 0;
 	if (data->light > NB_DARK_TX)
@@ -25,7 +25,7 @@ void	light_yagami(t_data *data)
 void	collect_key(t_data *data, int x, int y)
 {
 	data->map[y][x] = FLOOR;
-	data->key_count--;
+	data->base_map[y][x] = FLOOR;
 	data->key_found++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 15:46:56 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:23:33 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void texture_grab(t_txt *textures)
     i = -1;
     while (++i < NB_PORTAL_TX)
         textures->portal[i] = texture_inject(textures->portal[i], rm_nl(get_next_line(fd)));
+    textures->portal_off = texture_inject(textures->portal_off, rm_nl(get_next_line(fd)));
     i = -1;
     while (++i < NB_PLAYER_TX)
         textures->player[i] = texture_inject(textures->player[i], rm_nl(get_next_line(fd)));
@@ -79,6 +80,7 @@ void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
     i = -1;
     while (++i < NB_PORTAL_TX)
         tiles->portal[i] = mlx_texture_to_image(mlx, textures->portal[i]);
+    tiles->portal_off = mlx_texture_to_image(mlx, textures->portal_off);
     tiles->dark = mlx_texture_to_image(mlx, textures->dark[get_data()->light]);
     tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
     tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);

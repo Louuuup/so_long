@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:02:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/07/31 13:31:57 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:48:28 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,65 +79,13 @@ void   ft_swap(char *a, char *b)
     *b = tmp;
 }
 
-void    print_map(t_data *data)
+void	ft_move(t_co src, int x_m, int y_m, t_data *data)
 {
-	int x;
-	int y;
+	t_co dst;
 
-	x = 0;
-	y = 0;
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printf("YOU ARE AT:(%d,%d)\n", data->player.x, data->player.y);
-	printf("\n============THE MAP============\n");
-	while (!(y >= data->player.y - MAX_RANGE))
-		y++;
-	while (y < MAX_TILES_Y && y < data->player.y + MAX_RANGE && y >= data->player.y - MAX_RANGE)
-	{
-		if (data->map[y][x] != '\0')
-			ft_putchar_fd('\n', 1);
-		while (!(x >= data->player.x - MAX_RANGE))
-			x++;
-		while (x < MAX_TILES_X && x < data->player.x + MAX_RANGE && x >= data->player.x - MAX_RANGE)
-		{ //add if statement if '/0', dont print?
-			ft_putchar_fd(data->map[y][x], 1);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	ft_putchar_fd('\n', 1);
-	ft_putchar_fd('\n', 1);
+	dst.x = src.x + x_m; 
+	dst.y = src.y + y_m; 
+	data->map[dst.y][dst.x] = data->map[src.y][src.x];
+	if (data->base_map[src.y][src.x] != PLAYER)
+		data->map[src.y][src.x] = data->base_map[src.y][src.x];
 }
-void    print_flood(t_data *data)
-{
-	int x;
-	int y;
-
-	y = 0;
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printf("YOU ARE AT:(%d,%d)\n", data->player.x, data->player.y);
-	printf("\n============THE MAP============\n");
-	while (y < MAX_TILES_X)
-	{
-		x = 0;
-		while (x < MAX_TILES_X)
-		{
-			if (data->distance_map[y][x] == 0)
-				printf("## ");
-			else if (data->distance_map[y][x] - 1 > 9)
-				printf("%d ", data->distance_map[y][x] - 1);
-			else
-				printf("0%d ", data->distance_map[y][x] - 1);
-			x++;
-		}
-		y++;
-		printf("\n");
-	}
-
-	ft_putchar_fd('\n', 1);
-	ft_putchar_fd('\n', 1);
-}
-
-// TEST IF ACTUALLY USEFUL
-// :o
-

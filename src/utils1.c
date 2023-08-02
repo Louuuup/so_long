@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:08:16 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 14:45:26 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:15:44 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,21 @@ void ft_error_mlx(void)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 	exit(EXIT_FAILURE);
+}
+
+int	ft_rand(int range, int x, int y)
+{
+	t_data		*data;
+	int			out;
+
+	// printf("Randomizing...\n");
+	data = get_data();
+	// printf("RDM_KEY: %llu\n", data->rdm_key);
+	
+	data->rdm_key = x * data->rdm_key + y;
+	if (!(data->rdm_key % range))
+		data->rdm_key++;
+	out = data->rdm_key % range;
+	// printf("Randomized %llu\n", data->rdm_key % 8);
+	return (out);
 }

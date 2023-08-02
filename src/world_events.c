@@ -3,49 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   world_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/08/02 12:02:12 by yakary           ###   ########.fr       */
+/*   Updated: 2023/08/02 19:32:43 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 // nb = zombie # what
-static void zombie_turn(t_co zombie, int nb, int dir, t_data *data)
+static t_co zombie_turn(int nb, int dir, t_data *data)
 {
-    (void)zombie;
+    t_co diff;
+
+    diff.x = 0;
+    diff.y = 0;
     data->zombie_facing[nb] = dir;
+    if (dir == 0)
+        diff.y = -1;
+    else if (dir == 1)
+        diff.x = +1;
+    else if (dir == 2)
+        diff.y = +1;
+    else if (dir == 3)
+        diff.x = -1;
+    return (diff);
 }
+
 static void zombie_move(int nb, t_co zombie, t_data *data)
 {
     t_co dest;
 
-	dest.x = zombie.x;
-	dest.y = zombie.y;
     if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL&& data->map[zombie.y + 1][zombie.x] != ZOMBIE)
     {
-		dest.y++;
-        zombie_turn(zombie, nb, DOWN, data);
+        dest = zombie_turn(nb, DOWN, data);
     }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL && data->map[zombie.y][zombie.x + 1] != ZOMBIE)
     {
-    	dest.x++;
-        zombie_turn(zombie, nb, RIGHT, data);
+        dest = zombie_turn(nb, RIGHT, data);
     }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL && data->map[zombie.y - 1][zombie.x] != ZOMBIE)
 	{
-    	dest.y--;
-        zombie_turn(zombie, nb, UP, data);
+        dest = zombie_turn(nb, UP, data);
     }
     else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL && data->map[zombie.y][zombie.x - 1] != ZOMBIE)
 	{
-    	dest.x--;
-        zombie_turn(zombie, nb, LEFT, data);
+        dest = zombie_turn(nb, LEFT, data);
 	}
-    if (data->map[dest.y][dest.x] == PLAYER)
+    if (data->map[dest.y + zombie.y][dest.x + zombie.y] == PLAYER)
 		return (ft_die());
-	ft_swap(&data->map[zombie.y][zombie.x], &data->map[dest.y][dest.x]);
+	ft_move(zombie, dest.x, dest.y, data);
+	if (where_is(0, PLAYER, data->map).x == -1)
+		{
+			printf("PLAYER was killed by ZOMBIE\n");
+			ft_die();
+		}
+	// ft_swap(&data->map[zombie.y][zombie.x], &data->map[dest.y][dest.x]);
 }
 
 // NB of zombies in map
@@ -71,7 +84,7 @@ static void zombie_think(int nb, t_data *data)
 	while (i < nb && data->distance_map[zombie[i].y][zombie[i].x] != 0)
     {
 		data->rdm_key *= data->rdm_key;
-		if (ft_rand(5, zombie->x / zombie->y, data->mv_count) < 4 && i < nb)
+		if (ft_rand(3, zombie->x / zombie->y, data->mv_count) < 2 && i < nb)
         	zombie_move(i, zombie[i], data);
 		printf("Distance of %d between zombie and player\n", data->distance_map[zombie[i].y][zombie[i].x] - 2);
 		i++;
@@ -79,14 +92,19 @@ static void zombie_think(int nb, t_data *data)
 	// print_flood(data);
 }
 
-void    key_anim(void)
-{
-    
-}
-
 void    world_events(t_data *data)
 {
     // printf("nb of ZOMBIES: %d\n", char_count(ZOMBIE, data->map));
 	if (data->player_alive)
- 	   zombie_think(char_count(ZOMBIE, data->map), data);
+ 	   zombie_think(char_count(ZOMBIE, data->map), data);    
+
+
+
+
+
+
+
+
+
+
 }

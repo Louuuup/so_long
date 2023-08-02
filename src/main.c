@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 20:30:56 by yakary           ###   ########.fr       */
+/*   Updated: 2023/08/02 13:28:47 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static void event_hook(void* param)
 
 	sec = (int)mlx_get_time();
 	key_loop(data, sec);
-	portal_loop(data, sec);
+	if (data->key_count == data->key_found)
+		portal_loop(data, sec);
 }
 int main(void)
 {
