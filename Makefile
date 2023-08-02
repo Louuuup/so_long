@@ -13,8 +13,8 @@
 NAME = so_long
 #==============================================================================#
 CC = gcc
-# CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g
+# CFLAGS = -Wall -Werror -Wextra -Wun reachable-code -Ofast
+CFLAGS =  -Wunreachable-code -Ofast -g
 SRC = \
     main.c         texture_handler.c   initialiser.c    put_tile.c    \
     parse.c        put_tile_utils.c    movements.c      collisions.c \
@@ -49,6 +49,7 @@ ifeq ($(shell uname),Linux)
     LFLAGS += -lglfw -ldl -pthread -lm
 else
     LFLAGS += -framework Cocoa -framework OpenGL -framework IOKit -lglfw
+    CFLAGS += -Wall -Werror -Wextra
 endif
 # finding glfw (test commented shell command under this)
 ifeq ($(shell uname),Linux)
