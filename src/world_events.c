@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/08/01 14:35:28 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:02:12 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void zombie_think(int nb, t_data *data)
     flood_clean(data);
     flood_fill(data, player.x, player.y, 1);
 	i = 0;
-	while (i < nb)
+	while (i < nb && data->distance_map[zombie[i].y][zombie[i].x] != 0)
     {
 		data->rdm_key *= data->rdm_key;
 		if (ft_rand(5, zombie->x / zombie->y, data->mv_count) < 4 && i < nb)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 16:22:24 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:56:43 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define NB_DARK_TX 15
 //==================Files===================//
 # define FILE_TEST "./textures/128px/floor0.png"
-# define MAP "./maps/labyrinth.ber"
+# define MAP "./maps/caged.ber"
 //================Directions=================//
 enum e_dir
 {
