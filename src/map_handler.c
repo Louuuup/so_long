@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 15:00:29 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 16:29:50 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:12:04 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,16 @@ void	base_map_clean(t_data *data)
 	data->base_map[co.y][co.x] = FLOOR;
 	while (i < data->zombie_count)
 	{
-		co = where_is(i, ZOMBIE, data->base_map);
+		printf("i = %d\n", i);
+		co = where_is(i, ZOMBIE, data->map);
+		printf("removing Zombie at (%d,%d)\n", co.x, co.y);
+		print_altmap(data);
 		data->base_map[co.y][co.x] = FLOOR;
 		i++;
 	}
 	data->key_count = char_count(KEY, data->map);
+	print_altmap(data);
+	printf ("defining key_count for %d\n", data->key_count);
 		
 }
 

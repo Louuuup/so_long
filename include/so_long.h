@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/03 12:20:38 by yakary           ###   ########.fr       */
+/*   Updated: 2023/08/04 13:57:19 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@
 # define NB_KEY_TX 8
 # define NB_PORTAL_TX 9
 # define NB_DARK_TX 15
-//==================Files===================//
-# define FILE_TEST "./textures/128px/floor0.png"
-# define MAP "./maps/m_medium.ber"
 //================Directions=================//
 enum e_dir
 {
@@ -136,9 +133,11 @@ typedef	struct	data
 	int				 	light; //0 = brightest || 15 = almost no light
 	unsigned long long	rdm_key;
 	unsigned int		mv_count;
+	char 				*map_path;
 	
 }			t_data;
-
+////TO FREE IN ALL CASES AT END OR EXIT :
+// 
 
 /**
  * NOTE: Looks in files to convert and transform .png textures into usable tiles. 
@@ -174,6 +173,7 @@ void    rendering(t_data *data);
 void	player_placement(t_data *data);
 void    un_render(mlx_t *mlx, t_tile *tiles);
 void    print_map(t_data *data);
+void    print_altmap(t_data *data);
 void	put_floor(t_data	*data);
 int		ft_rand(int range, int x, int y);
 void	*ft_free(void *ptr);

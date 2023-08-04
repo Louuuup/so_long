@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:22:24 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 16:20:13 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:20:06 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void put_animated(int x, int y, char map[][MAX_TILES_X], t_data *data)
 
 static void put_other(int x, int y, t_data *data)
 {
+	
 	if (data->base_map[y][x] == KEY || data->base_map[y][x] == PORTAL)
 	put_animated(x, y, data->base_map, data);
 	if (data->map[y][x] == ZOMBIE)
@@ -72,6 +73,7 @@ static void put_other(int x, int y, t_data *data)
 		if (data->zombie_facing[data->zombie_count] < 0)
 			data->zombie_facing[data->zombie_count] = 0;
 		put_tile(data->mlx, data->tiles->zombie[data->zombie_facing[data->zombie_count]], iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));
+		data->zombie_count++;
 	}
 	else if (data->map[y][x] == PLAYER)
 		put_tile(data->mlx, data->tiles->player, iso_x(x, y, data->anchor.x), iso_y(x, y, data->anchor.y));

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 16:26:39 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:42:03 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ void	re_render(t_data *data)
 	}
 	data->tiles = ft_calloc(1, sizeof(t_tile));
 	if (!data->tiles)
-	{
-		printf("ERROR\nType: MALLOC");
-		exit(ERROR);
-	}
+		ft_error("allocation error.");
 	texture_convert(data->mlx, data->textures, data->tiles);
 	rendering(data);
 }
@@ -68,12 +65,13 @@ void    rendering(t_data *data)
 
 	i = -1;
 	print_map(data);
+	print_altmap(data);
 	player_placement(data);
     put_floor(data);
 	put_object(data);
-	if (data->player_alive)
-		mlx_image_to_window(data->mlx, data->tiles->dark, 0, 0);
-	else
+	// if (data->player_alive && !data->win)
+	// 	mlx_image_to_window(data->mlx, data->tiles->dark, 0, 0);
+	if (!data->player_alive)
 	{
 		mlx_image_to_window(data->mlx, data->tiles->death_screen[0], 0, 0);
 		mlx_image_to_window(data->mlx, data->tiles->death_screen[1], 0, 0);

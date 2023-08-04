@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:02:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 15:48:28 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:18:17 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ t_co	where_is(int skip, char c, char map[][MAX_TILES_X])
 		{
 			if (map[co.y][co.x] == c)
 			{
-				if (skip > count)
-					count++;
+				if (skip)
+					skip--;
 				else
 					return (co);	
 			}

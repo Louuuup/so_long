@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/08/03 12:24:33 by yakary           ###   ########.fr       */
+/*   Updated: 2023/08/04 16:15:10 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,26 @@ static t_co zombie_turn(int nb, int dir, t_data *data)
     diff.x = 0;
     diff.y = 0;
     data->zombie_facing[nb] = dir;
-    if (dir == 0)
+    if (dir == UP)
+    {
         diff.y = -1;
-    else if (dir == 1)
+        printf("zombie #%d looking UP!!\n", nb);
+    }
+    else if (dir == RIGHT)
+    {
         diff.x = +1;
-    else if (dir == 2)
+        printf("zombie #%d looking RIGHT!!\n", nb);
+    }
+    else if (dir == DOWN)
+    {
         diff.y = +1;
-    else if (dir == 3)
+        printf("zombie #%d looking DOWN!!\n", nb);
+    }
+    else if (dir == LEFT)
+    {
         diff.x = -1;
+        printf("zombie #%d looking LEFT!!\n", nb);
+    }
     return (diff);
 }
 
@@ -34,23 +46,24 @@ static void zombie_move(int nb, t_co zombie, t_data *data)
 {
     t_co dest;
 
-    if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL&& data->map[zombie.y + 1][zombie.x] != ZOMBIE)
+    if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL && data->map[zombie.y + 1][zombie.x] != PORTAL)
     {
         dest = zombie_turn(nb, DOWN, data);
     }
-    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL && data->map[zombie.y][zombie.x + 1] != ZOMBIE)
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL && data->map[zombie.y][zombie.x + 1] != PORTAL)
     {
         dest = zombie_turn(nb, RIGHT, data);
     }
-    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL && data->map[zombie.y - 1][zombie.x] != ZOMBIE)
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL && data->map[zombie.y - 1][zombie.x] != PORTAL)
 	{
         dest = zombie_turn(nb, UP, data);
     }
-    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL && data->map[zombie.y][zombie.x - 1] != ZOMBIE)
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL && data->map[zombie.y][zombie.x - 1] != PORTAL)
 	{
         dest = zombie_turn(nb, LEFT, data);
 	}
-	ft_move(zombie, dest.x, dest.y, data);
+    if (data->map[dest.y][dest.x] != ZOMBIE && data->map[dest.y][dest.x] != PORTAL)
+	    ft_move(zombie, dest.x, dest.y, data);
 	if (where_is(0, PLAYER, data->map).x == -1)
 		{
 			printf("PLAYER was killed by ZOMBIE\n");

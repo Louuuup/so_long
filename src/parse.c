@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 15:52:38 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:22:06 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	parse_read(void)
 	
 	data = get_data();
     fd = 0;
-	fd = open(MAP, O_RDONLY);
+	fd = open(data->map_path, O_RDONLY);
 	if (fd < 0)
 		return ;
 	map_read(fd, data, 0, 0);
