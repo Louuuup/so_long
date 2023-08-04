@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/08/02 19:32:43 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:24:33 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static void zombie_move(int nb, t_co zombie, t_data *data)
 	{
         dest = zombie_turn(nb, LEFT, data);
 	}
-    if (data->map[dest.y + zombie.y][dest.x + zombie.y] == PLAYER)
-		return (ft_die());
 	ft_move(zombie, dest.x, dest.y, data);
 	if (where_is(0, PLAYER, data->map).x == -1)
 		{
@@ -86,7 +84,7 @@ static void zombie_think(int nb, t_data *data)
 		data->rdm_key *= data->rdm_key;
 		if (ft_rand(3, zombie->x / zombie->y, data->mv_count) < 2 && i < nb)
         	zombie_move(i, zombie[i], data);
-		printf("Distance of %d between zombie and player\n", data->distance_map[zombie[i].y][zombie[i].x] - 2);
+		// printf("Distance of %d between zombie and player\n", data->distance_map[zombie[i].y][zombie[i].x] - 2);
 		i++;
 	}
 	// print_flood(data);

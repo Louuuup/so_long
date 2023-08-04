@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:08:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 16:32:10 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:23:03 by yakary           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void    mv_right(void)
         // printf("(%d,%d)\n", co->x, co->y);
         data->player_facing = 1;
         if (data->map[co.y][co.x + 1] == ZOMBIE)
+        {
+			printf("PLAYER was walked into ZOMBIE\n");
             ft_die();
+        }
         else if (data->map[co.y][co.x + 1] == KEY)
             collect_key(data, co.x + 1, co.y);
         else if (data->map[co.y][co.x + 1] == PORTAL && data->key_count == data->key_found)
@@ -49,7 +52,10 @@ void    mv_left(void)
     {
         data->player_facing = 3;
         if (data->map[co.y][co.x - 1] == ZOMBIE)
+        {
+			printf("PLAYER was walked into ZOMBIE\n");
             ft_die();
+        }
         else if (data->map[co.y][co.x - 1] == KEY)
             collect_key(data, co.x - 1, co.y);
         else if (data->map[co.y][co.x - 1] == PORTAL && data->key_count == data->key_found)
@@ -75,7 +81,10 @@ void    mv_up(void)
     {
         data->player_facing = 0;
         if (data->map[co.y - 1][co.x] == ZOMBIE)
+        {
+			printf("PLAYER was walked into ZOMBIE\n");
             ft_die();
+        }
         else if (data->map[co.y - 1][co.x] == KEY)
             collect_key(data, co.x, co.y - 1);
         else if (data->map[co.y - 1][co.x] == PORTAL && data->key_count == data->key_found)
@@ -103,7 +112,10 @@ void    mv_down(void)
         // printf("(%d,%d)\n", co->x, co->y);
         data->player_facing = 2;
         if (data->map[co.y + 1][co.x] == ZOMBIE)
+        {
+			printf("PLAYER was walked into ZOMBIE\n");
             ft_die();
+        }
         else if (data->map[co.y + 1][co.x] == KEY)
             collect_key(data, co.x, co.y + 1); 
         else if (data->map[co.y + 1][co.x] == PORTAL && data->key_count == data->key_found)
