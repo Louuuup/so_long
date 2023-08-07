@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/04 13:57:19 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:49:54 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define MAX_RANGE 16
 # define READ_BUFFER 256
 # define RANDOM_SEED 915
-# define MAX_ZOMBIES 4
+# define MAX_ZOMBIES 5
 //==================TILES=================//
 # define ZOMBIE 'Z'
 # define PLAYER 'P'

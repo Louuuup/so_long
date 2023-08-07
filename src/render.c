@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/04 15:42:03 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:29:24 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void    rendering(t_data *data)
 	int i;
 
 	i = -1;
-	print_map(data);
-	print_altmap(data);
+	// print_map(data);
+	// print_altmap(data);
 	player_placement(data);
     put_floor(data);
 	put_object(data);

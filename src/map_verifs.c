@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:10:21 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/01 16:41:59 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:49:40 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	map_legal(t_data *data, char map[][MAX_TILES_X])
 		ft_error("Too exits. One max");
 	else if (!map_is_framed(data, map))
 		ft_error("Walls(1) are needed all around the map");
+	if (data->zombie_count > MAX_ZOMBIES)
+		ft_error("Too many zombies(Z). Change maximum in header file");
 	map_possible(data);
 	return (0);
 }

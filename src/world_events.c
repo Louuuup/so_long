@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:34:53 by yakary            #+#    #+#             */
-/*   Updated: 2023/08/04 16:15:10 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:53:27 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,28 @@ static t_co zombie_turn(int nb, int dir, t_data *data)
     if (dir == UP)
     {
         diff.y = -1;
-        printf("zombie #%d looking UP!!\n", nb);
+        printf("Looking UP!!\n");
     }
     else if (dir == RIGHT)
     {
         diff.x = +1;
-        printf("zombie #%d looking RIGHT!!\n", nb);
+        printf("Looking RIGHT!!\n");
     }
     else if (dir == DOWN)
     {
         diff.y = +1;
-        printf("zombie #%d looking DOWN!!\n", nb);
+        printf("Looking DOWN!!\n");
     }
     else if (dir == LEFT)
     {
         diff.x = -1;
-        printf("zombie #%d looking LEFT!!\n", nb);
+        printf("Looking LEFT!!\n");
     }
+    else
+    {
+        ft_error("unknown error");
+    }
+    printf("diff is (%d,%d)\n", diff.x, diff.y);
     return (diff);
 }
 
@@ -46,25 +51,20 @@ static void zombie_move(int nb, t_co zombie, t_data *data)
 {
     t_co dest;
 
-    if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL && data->map[zombie.y + 1][zombie.x] != PORTAL)
-    {
+    printf("\n\n\nTreating zombie#%d:\n", nb);
+    if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y + 1][zombie.x] && data->map[zombie.y + 1][zombie.x] != WALL && data->map[zombie.y + 1][zombie.x] != PORTAL && data->map[zombie.y + 1][zombie.x] != ZOMBIE)
         dest = zombie_turn(nb, DOWN, data);
-    }
-    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL && data->map[zombie.y][zombie.x + 1] != PORTAL)
-    {
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x + 1] && data->map[zombie.y][zombie.x + 1] != WALL && data->map[zombie.y][zombie.x + 1] != PORTAL && data->map[zombie.y][zombie.x + 1] != ZOMBIE)
         dest = zombie_turn(nb, RIGHT, data);
-    }
-    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL && data->map[zombie.y - 1][zombie.x] != PORTAL)
-	{
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y - 1][zombie.x] && data->map[zombie.y - 1][zombie.x] != WALL && data->map[zombie.y - 1][zombie.x] != PORTAL && data->map[zombie.y - 1][zombie.x] != ZOMBIE)
         dest = zombie_turn(nb, UP, data);
-    }
-    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL && data->map[zombie.y][zombie.x - 1] != PORTAL)
-	{
+    else if (data->distance_map[zombie.y][zombie.x] > data->distance_map[zombie.y][zombie.x - 1] && data->map[zombie.y][zombie.x - 1] != WALL && data->map[zombie.y][zombie.x - 1] != PORTAL && data->map[zombie.y][zombie.x - 1] != ZOMBIE)
         dest = zombie_turn(nb, LEFT, data);
-	}
-    if (data->map[dest.y][dest.x] != ZOMBIE && data->map[dest.y][dest.x] != PORTAL)
+    else
+        return ;
+    if (data->map[zombie.y + dest.y][zombie.x + dest.x] != ZOMBIE && data->map[dest.y][dest.x] != PORTAL)
 	    ft_move(zombie, dest.x, dest.y, data);
-	if (where_is(0, PLAYER, data->map).x == -1)
+    if (where_is(0, PLAYER, data->map).x == -1)
 		{
 			printf("PLAYER was killed by ZOMBIE\n");
 			ft_die();
@@ -72,7 +72,7 @@ static void zombie_move(int nb, t_co zombie, t_data *data)
 	// ft_swap(&data->map[zombie.y][zombie.x], &data->map[dest.y][dest.x]);
 }
 
-// NB of zombies in map
+// NB of zombies in map 
 static void zombie_think(int nb, t_data *data)
 {
     t_co player;
