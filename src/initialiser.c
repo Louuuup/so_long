@@ -6,16 +6,16 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:33:54 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/08 14:29:05 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:08:36 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 void	init_all(mlx_t	*mlx, t_txt *textures)
-{ 
+{
 	t_data	*data;
-	int i;
+	int		i;
 
 	i = 0;
 	data = get_data();
@@ -23,7 +23,7 @@ void	init_all(mlx_t	*mlx, t_txt *textures)
 	data->key_found = 0;
 	data->textures = textures;
 	data->player_alive = 1;
-    data->player_facing = 1;
+	data->player_facing = 1;
 	data->tiles = ft_calloc(1, sizeof(t_tile));
 	if (!data->tiles)
 		ft_error("allocation error");

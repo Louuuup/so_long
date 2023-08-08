@@ -6,12 +6,11 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:31 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/08 14:14:56 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:52:37 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 void	re_render(t_data *data)
 {
 	
@@ -48,10 +47,6 @@ void    rendering(t_data *data)
 		mlx_image_to_window(data->mlx, data->tiles->win_screen[0], 0, 0);
 		mlx_image_to_window(data->mlx, data->tiles->win_screen[1], 0, 0);
 	}
-	ft_info_onscreen(data->mlx, 5, 15, ft_strjoin("X: ", ft_itoa(data->player.x)));
-	ft_info_onscreen(data->mlx, 5, 30, ft_strjoin("Y: ", ft_itoa(data->player.y)));
-	ft_info_onscreen(data->mlx, 5, 45, ft_strjoin("MOVES: ", ft_itoa(data->mv_count)));
-	ft_info_onscreen(data->mlx, 5, 60, ft_strjoin("KEYS FOUND: ", ft_itoa(data->key_found)));
-	ft_info_onscreen(data->mlx, 135, 60, ft_strjoin("/", ft_itoa(data->key_count)));
 	data->tiles_old = data->tiles;
+	put_info(data);
 }

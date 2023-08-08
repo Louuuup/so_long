@@ -6,12 +6,11 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/04 13:22:06 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:17:04 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	player_placement(t_data *data)
 {
@@ -24,10 +23,8 @@ void	player_placement(t_data *data)
 	{
 		while (x < MAX_TILES_X)
 		{
-			// printf("(%d,%d) working\n", x, y);
 			if (data->map[y][x] == 'P')
 			{
-				// printf("(%d,%d) working, found P\n", x, y);
 				data->player.x = x;
 				data->player.y = y;
 				data->anchor.x = WIDTH / 2 - iso_x(x, y, 0) - 64;
@@ -39,43 +36,41 @@ void	player_placement(t_data *data)
 		x = 0;
 		y++;
 	}
-
 }
 
 void	ft_dimensions(void)
 {
 	t_data	*data;
+
 	data = get_data();
 	data->height = 0;
 	data->length = 0;
-	while (data->map[data->height][data->length] != '\0' &&  data->length <= MAX_TILES_X)
+	while (data->map[data->height][data->length] != '\0' && data->length \
+	<= MAX_TILES_X)
 	{
 		data->length++;
 	}
 	data->length--;
-	while (data->map[data->height][data->length] != '\0' && data->height <= MAX_TILES_Y)
+	while (data->map[data->height][data->length] != '\0' && data->height \
+	<= MAX_TILES_Y)
 	{
 		data->height++;
 	}
 	data->height--;
-	
-	// data->tiles->anchor = data->length / 2 * TILE_SIZE;
-	// printf("X: %zu\nY: %zu\nANCHOR: %zu\n", data->length, data->height, data->tiles->anchor);
-	
 }
 
 void	parse_read(void)
 {
 	int		fd;
 	t_data	*data;
-	
+
 	data = get_data();
-    fd = 0;
+	fd = 0;
 	fd = open(data->map_path, O_RDONLY);
 	if (fd < 0)
 		return ;
 	map_read(fd, data, 0, 0);
-    fd = close(fd);
+	fd = close(fd);
 	ft_dimensions();
 }
 
@@ -84,10 +79,5 @@ void	parse_main(mlx_t *mlx, t_tile *tiles)
 	(void)mlx;
 	(void)tiles;
 	parse_read();
-    rendering(get_data());
-	// printf("\nBase_depth: %d\n", get_data()->player_base_depth);
-	// printf("Player at z=%d\n", tiles->player->instances->z);
+	rendering(get_data());
 }
-
-
-// get_data()->images;
