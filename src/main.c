@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/04 13:24:33 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:29:39 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_data	*get_data(void)
 	
 	if (!data)
 		data = ft_calloc(1, sizeof(t_data));
-
 	return (data);
 }
 
@@ -29,7 +28,6 @@ static void args_handler(t_data *data, int argc, char **argv)
 	else if (argc > 2)
 		ft_error("Bro. Only one map at the time.\n(maps/FILE_NAME)");
 	data->map_path = argv[1];
-	
 }
 static void mv_keyhook(mlx_key_data_t keydata, void* param)
 {	
@@ -84,6 +82,8 @@ int main(int argc, char **argv)
     mlx_key_hook(mlx, mv_keyhook, (void *)data);
 	mlx_loop_hook(mlx, event_hook, (void *)data);
   	mlx_loop(mlx);
-	mlx_terminate(mlx);	
+	mlx_terminate(mlx);
+	
+	ult_free(data);
 	return (EXIT_SUCCESS);
 }

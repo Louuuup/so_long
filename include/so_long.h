@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/07 15:49:54 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:36:18 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ void	ft_move(t_co src, int x_m, int y_m, t_data *data);
 *@return		your mom
 */
 void	base_map_clean(t_data *data);
+void	ult_free(t_data *data);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:08:16 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 15:15:44 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:42:56 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*rm_nl(char *str)
 			return (str);
 		i++;
 	}
+	ft_free(str);
 	return (str);
 }
 
