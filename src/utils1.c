@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:08:16 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/08 12:42:56 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:09:49 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 char	*rm_nl(char *str)
 {
     int i;
-	
+
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -35,15 +35,17 @@ char	*rm_nl(char *str)
 
 void ft_error(char *str)
 {
-	ft_putstr_fd("ERROR >>> ", 2);	
+	ft_putstr_fd("ERROR >>> ", 2);
 	ft_putstr_fd(str, 2);
-	ft_putstr_fd("\n", 2);	
+	ft_putstr_fd("\n", 2);
+	ult_free(get_data());
 	exit(EXIT_FAILURE);
 }
 
 void ft_error_mlx(void)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	ult_free(get_data());
 	exit(EXIT_FAILURE);
 }
 
@@ -55,7 +57,7 @@ int	ft_rand(int range, int x, int y)
 	// printf("Randomizing...\n");
 	data = get_data();
 	// printf("RDM_KEY: %llu\n", data->rdm_key);
-	
+
 	data->rdm_key = x * data->rdm_key + y;
 	if (!(data->rdm_key % range))
 		data->rdm_key++;

@@ -6,20 +6,11 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 15:59:03 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:11:43 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static mlx_texture_t	*texture_inject(mlx_texture_t *texture, void *ptr)
-{
-	texture = mlx_load_png(ptr);
-	ft_free(ptr);
-	if (!texture)
-		ft_error_mlx();
-	return (texture);
-}
 
 static void	texture_grab_utils(t_txt *textures, int fd)
 {
@@ -76,40 +67,46 @@ static void	texture_grab(t_txt *textures)
 	texture_grab_utils(textures, fd);
 }
 
-void texture_convert(mlx_t* mlx, t_txt* textures, t_tile* tiles)
+static void	texture_convert_utils(mlx_t *mlx, t_txt *textures, t_tile *tiles)
 {
-	int i;
+	int	i;
+
+	i = -1;
+	while (++i < NB_PORTAL_TX)
+		tiles->portal[i] = texture_load(mlx, textures->portal[i]);
+	tiles->portal_off = texture_load(mlx, textures->portal_off);
+	tiles->dark = texture_load(mlx, textures->dark[get_data()->light]);
+	tiles->death_screen[0] = texture_load(mlx, textures->death_screen[0]);
+	tiles->death_screen[1] = texture_load(mlx, textures->death_screen[1]);
+	tiles->win_screen[0] = texture_load(mlx, textures->win_screen[0]);
+	tiles->win_screen[1] = texture_load(mlx, textures->win_screen[1]);
+	tiles->death_screen[1]->enabled = false;
+	tiles->win_screen[1]->enabled = false;
+}
+
+void	texture_convert(mlx_t *mlx, t_txt *textures, t_tile *tiles)
+{
+	int	i;
 
 	i = -1;
 	while (++i < NB_FLOOR_TX)
-		tiles->floor[i] = mlx_texture_to_image(mlx, textures->floor[i]);
+		tiles->floor[i] = texture_load(mlx, textures->floor[i]);
 	i = -1;
 	while (++i < NB_WALL_TX)
-		tiles->wall[i] = mlx_texture_to_image(mlx, textures->wall[i]);
+		tiles->wall[i] = texture_load(mlx, textures->wall[i]);
 	i = -1;
-	tiles->player = mlx_texture_to_image(mlx, textures->player[get_data()->player_facing]);
+	tiles->player = texture_load(mlx, \
+		textures->player[get_data()->player_facing]);
 	while (++i < NB_ZOMBIE_TX)
-		tiles->zombie[i] = mlx_texture_to_image(mlx, textures->zombie[i]);
+		tiles->zombie[i] = texture_load(mlx, textures->zombie[i]);
 	i = -1;
 	while (++i < NB_KEY_TX)
-		tiles->key[i] = mlx_texture_to_image(mlx, textures->key[i]);
-	i = -1;
-	while (++i < NB_PORTAL_TX)
-		tiles->portal[i] = mlx_texture_to_image(mlx, textures->portal[i]);
-	tiles->portal_off = mlx_texture_to_image(mlx, textures->portal_off);
-	tiles->dark = mlx_texture_to_image(mlx, textures->dark[get_data()->light]);
-	tiles->death_screen[0] = mlx_texture_to_image(mlx, textures->death_screen[0]);
-	tiles->death_screen[1] = mlx_texture_to_image(mlx, textures->death_screen[1]);
-	tiles->win_screen[0] = mlx_texture_to_image(mlx, textures->win_screen[0]);
-	tiles->win_screen[1] = mlx_texture_to_image(mlx, textures->win_screen[1]);
-	tiles->death_screen[1]->enabled = false;
-	tiles->win_screen[1]->enabled = false;
-
+		tiles->key[i] = texture_load(mlx, textures->key[i]);
+	texture_convert_utils(mlx, textures, tiles);
 }
 
-void texture_handler(mlx_t* mlx, t_txt* textures, t_tile* tiles)
+void	texture_handler(mlx_t *mlx, t_txt *textures, t_tile *tiles)
 {
-    texture_grab(textures);
-    texture_convert(mlx, textures, tiles);
-
+	texture_grab(textures);
+	texture_convert(mlx, textures, tiles);
 }

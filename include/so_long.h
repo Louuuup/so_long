@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 15:40:22 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:07:47 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ typedef struct data
 *@param[in] tiles		strct that stores all tiles.
 *@return 				your mom
 */
-void	texture_handler(mlx_t	*mlx, t_txt	*textures, t_tile *tiles);
+void			texture_handler(mlx_t	*mlx, t_txt	*textures, t_tile *tiles);
 /**
  * NOTE: Displays a tile to specific coordinates.
 *@param[in] mlx main mlx struct
@@ -154,35 +154,35 @@ void	texture_handler(mlx_t	*mlx, t_txt	*textures, t_tile *tiles);
 *@param[in] y	Y position
 *@return		your mom
 */
-void	tile_display(mlx_t *mlx, mlx_image_t *img, int x, int y);
-void	ft_error(char *str);
-void	parse_main(mlx_t *mlx, t_tile *tiles);
-void	put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y);
-t_data	*get_data(void); //Singleton
-void	mv_up(void);
-void	mv_down(void);
-void	mv_left(void);
-void	mv_right(void);
-void	init_all(mlx_t	*mlx, t_txt *textures);
-int		parse_tiles(char c, mlx_image_t *tile);
-int		iso_x(int x, int y, int anchor);
-int		iso_y(int x, int y, int anchor);
-void	ft_swap(char *a, char *b);
-void	rendering(t_data *data);
-void	player_placement(t_data *data);
-void	un_render(mlx_t *mlx, t_tile *tiles);
-void	print_map(t_data *data);
-void	print_altmap(t_data *data);
-void	put_floor(t_data	*data);
-int		ft_rand(int range, int x, int y);
-void	*ft_free(void *ptr);
-void	map_read(int fd, t_data *data, int x, int y);
-void	texture_convert(mlx_t *mlx, t_txt *textures, t_tile *tiles);
-void	re_render(t_data *data);
-void	put_object(t_data	*data);
-void	ft_error_mlx(void);
-int		map_legal(t_data *data, char map[][MAX_TILES_X]);
-void	world_events(t_data *data);
+void			tile_display(mlx_t *mlx, mlx_image_t *img, int x, int y);
+void			ft_error(char *str);
+void			parse_main(mlx_t *mlx, t_tile *tiles);
+void			put_tile(mlx_t *mlx, mlx_image_t *img, int x, int y);
+t_data			*get_data(void); //Singleton
+void			mv_up(void);
+void			mv_down(void);
+void			mv_left(void);
+void			mv_right(void);
+void			init_all(mlx_t	*mlx, t_txt *textures);
+int				parse_tiles(char c, mlx_image_t *tile);
+int				iso_x(int x, int y, int anchor);
+int				iso_y(int x, int y, int anchor);
+void			ft_swap(char *a, char *b);
+void			rendering(t_data *data);
+void			player_placement(t_data *data);
+void			un_render(mlx_t *mlx, t_tile *tiles);
+void			print_map(t_data *data);
+void			print_altmap(t_data *data);
+void			put_floor(t_data	*data);
+int				ft_rand(int range, int x, int y);
+void			*ft_free(void *ptr);
+void			map_read(int fd, t_data *data, int x, int y);
+void			texture_convert(mlx_t *mlx, t_txt *textures, t_tile *tiles);
+void			re_render(t_data *data);
+void			put_object(t_data	*data);
+void			ft_error_mlx(void);
+int				map_legal(t_data *data, char map[][MAX_TILES_X]);
+void			world_events(t_data *data);
 /**
  * NOTE: Fills data.distance with distance of player + 1
 *@param[in] data		t_data
@@ -191,20 +191,20 @@ void	world_events(t_data *data);
 *@param[in] distance 	for recursive purposes. 1 by default
 *@return		your mom
 */
-void	flood_fill(t_data *data, int x, int y, int distance);
-t_co	where_is(int skip, char c, char map[][MAX_TILES_X]);
-int		char_count(char c, char arr[][MAX_TILES_X]);
-void	print_flood(t_data *data);
-void	flood_clean(t_data *data);
-void	ft_die(void);
-void	menu_up(t_data *data);
-void	menu_down(t_data *data);
-void	menu_press(void);
-void	collect_key(t_data *data, int x, int y);
-void	key_loop(t_data *data, int sec);
-void	portal_loop(t_data *data, int sec);
-char	*rm_nl(char *str);
-void	ft_win(void);
+void			flood_fill(t_data *data, int x, int y, int distance);
+t_co			where_is(int skip, char c, char map[][MAX_TILES_X]);
+int				char_count(char c, char arr[][MAX_TILES_X]);
+void			print_flood(t_data *data);
+void			flood_clean(t_data *data);
+void			ft_die(void);
+void			menu_up(t_data *data);
+void			menu_down(t_data *data);
+void			menu_press(void);
+void			collect_key(t_data *data, int x, int y);
+void			key_loop(t_data *data, int sec);
+void			portal_loop(t_data *data, int sec);
+char			*rm_nl(char *str);
+void			ft_win(void);
 /**
  * NOTE: Moves player or zombie in direction & cleans tile left behind.
 *@param[in] src		t_data
@@ -213,13 +213,16 @@ void	ft_win(void);
 *@param[in] data 	t_data
 *@return		your mom
 */
-void	ft_move(t_co src, int x_m, int y_m, t_data *data);
+void			ft_move(t_co src, int x_m, int y_m, t_data *data);
 /**
  * NOTE: Removes entities(zombie or players) from base_map.
 *@param[in] data 	t_data
 *@return		your mom
 */
-void	base_map_clean(t_data *data);
-void	ult_free(t_data *data);
-void	put_info(t_data *data);
+void			base_map_clean(t_data *data);
+void			ult_free(t_data *data);
+void			put_info(t_data *data);
+mlx_texture_t	*texture_inject(mlx_texture_t *texture, void *ptr);
+mlx_image_t		*texture_load(mlx_t *mlx, mlx_texture_t *texture);
+
 #endif
