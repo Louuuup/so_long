@@ -6,35 +6,34 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:34:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/02 13:31:14 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:42:57 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-static void    key_animation(t_data *data, int frame)
+static void	key_animation(t_data *data, int frame)
 {
-    int	i;
+	int	i;
 
-    i = -1;
+	i = -1;
 	if (frame > NB_KEY_TX)
 		exit(ERROR);
 	while (++i < NB_KEY_TX)
-  		data->tiles->key[i]->enabled = false;
-    data->tiles->key[frame]->enabled = true;
+		data->tiles->key[i]->enabled = false;
+	data->tiles->key[frame]->enabled = true;
 }
 
-static void    portal_animation(t_data *data, int frame)
+static void	portal_animation(t_data *data, int frame)
 {
-    int	i;
+	int	i;
 
-    i = -1;
+	i = -1;
 	if (frame > NB_PORTAL_TX)
 		exit(ERROR);
 	while (++i < NB_PORTAL_TX)
-  		data->tiles->portal[i]->enabled = false;
-    data->tiles->portal[frame]->enabled = true;
+		data->tiles->portal[i]->enabled = false;
+	data->tiles->portal[frame]->enabled = true;
 }
 
 void	key_loop(t_data *data, int sec)

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/08 15:13:41 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/11 15:40:22 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ enum e_dir
 };
 
 //					  0
-//					3 + 1						
+//					3 + 1
 //        		      2
 
 // '0' is 'U'
@@ -100,36 +100,46 @@ typedef struct images
 
 }			t_tile;
 
+/**
+ *
+ * @param height
+ * @param lenght
+ * @param player
+ * @param anchor
+ * @param map[y][x]
+ * @param base_map[y][x]
+ * @param distance_map[y][x]
+ * @param player_facing
+ * @param zombie_facing
+ */
 typedef struct data
 {
 	size_t				height;
 	size_t				length;
-	t_tile				*tiles_old;
 	t_tile				*tiles;
+	t_tile				*tiles_old;
 	t_txt				*textures;
 	mlx_t				*mlx;
-	t_co				start;
 	t_co				player;
-	t_co				anchor;
-	char				base_map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
-	char				map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
-	int					distance_map[MAX_TILES_Y][MAX_TILES_X]; //CAREFUL: Y then X 
-	int					player_base_depth;
+	t_co				anc;
+	char				map[MAX_TILES_Y][MAX_TILES_X];
+	char				base_map[MAX_TILES_Y][MAX_TILES_X];
+	int					distance_map[MAX_TILES_Y][MAX_TILES_X];
 	int					player_facing;
-	int					zombie_facing[MAX_ZOMBIES]; //-1 if dosent exist.
-	int					zombie_count;
+	int					zombie_facing[MAX_ZOMBIES];
+	int					zb_count;
 	int					key_count;
 	int					key_found;
-	int					player_alive; //1 = alive || 0 = dead.
-	int					win;        // = win || 0 = no win
-	int				 	light; //0 = brightest || 15 = almost no light
+	int					player_alive;
+	int					win;
+	int					light;
 	unsigned long long	rdm_key;
 	unsigned int		mv_count;
 	char				*map_path;
 }			t_data;
 
 /**
- * NOTE: Looks in files to convert and transform .png into usable tiles. 
+ * NOTE: Looks in files to convert and transform .png into usable tiles.
 *@param[in] mlx			main mlx struct
 *@param[in] textures 	strct of avaliable textures.
 *@param[in] tiles		strct that stores all tiles.
@@ -205,7 +215,7 @@ void	ft_win(void);
 */
 void	ft_move(t_co src, int x_m, int y_m, t_data *data);
 /**
- * NOTE: Removes entities(zombie or players) from base_map. 
+ * NOTE: Removes entities(zombie or players) from base_map.
 *@param[in] data 	t_data
 *@return		your mom
 */

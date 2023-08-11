@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/08 15:17:04 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/11 15:43:06 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	player_placement(t_data *data)
 			{
 				data->player.x = x;
 				data->player.y = y;
-				data->anchor.x = WIDTH / 2 - iso_x(x, y, 0) - 64;
-				data->anchor.y = HEIGHT / 2 - iso_y(x, y, 0) - 32;
+				data->anc.x = WIDTH / 2 - iso_x(x, y, 0) - 64;
+				data->anc.y = HEIGHT / 2 - iso_y(x, y, 0) - 32;
 				return ;
 			}
 			x++;
