@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 17:07:47 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:10:05 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct images
  * @param anchor
  * @param map[y][x]
  * @param base_map[y][x]
- * @param distance_map[y][x]
+ * @param dst_map[y][x]
  * @param player_facing
  * @param zombie_facing
  */
@@ -121,10 +121,11 @@ typedef struct data
 	t_txt				*textures;
 	mlx_t				*mlx;
 	t_co				player;
+	t_co				zombie[MAX_ZOMBIES];
 	t_co				anc;
 	char				map[MAX_TILES_Y][MAX_TILES_X];
 	char				base_map[MAX_TILES_Y][MAX_TILES_X];
-	int					distance_map[MAX_TILES_Y][MAX_TILES_X];
+	int					dst_map[MAX_TILES_Y][MAX_TILES_X];
 	int					player_facing;
 	int					zombie_facing[MAX_ZOMBIES];
 	int					zb_count;
