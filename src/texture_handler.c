@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2523/06/14 14:14:47 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 17:11:43 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:46:40 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	texture_grab(t_txt *textures)
 	int	fd;
 
 	i = -1;
-	fd = open("./textures/paths.txt", O_RDONLY);
+	fd = open("./textures/paths", O_RDONLY);
 	if (fd < 0)
 		exit (ERROR);
 	while (++i < NB_FLOOR_TX)

@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:07:51 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 15:43:06 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:50:12 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	parse_read(void)
 	fd = 0;
 	fd = open(data->map_path, O_RDONLY);
 	if (fd < 0)
-		return ;
+		ft_error("Invalid map name or path\n(maps/<map_name>)");
 	map_read(fd, data, 0, 0);
 	fd = close(fd);
 	ft_dimensions();
