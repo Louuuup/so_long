@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:30:57 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/08 15:14:01 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:16:44 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	print_flood(t_data *data)
 		x = 0;
 		while (x < MAX_TILES_X)
 		{
-			if (data->distance_map[y][x] == 0)
+			if (data->dst_map[y][x] == 0)
 				printf("## ");
-			else if (data->distance_map[y][x] - 1 > 9)
-				printf("%d ", data->distance_map[y][x] - 1);
+			else if (data->dst_map[y][x] - 1 > 9)
+				printf("%d ", data->dst_map[y][x] - 1);
 			else
-				printf("0%d ", data->distance_map[y][x] - 1);
+				printf("0%d ", data->dst_map[y][x] - 1);
 			x++;
 		}
 		y++;

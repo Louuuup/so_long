@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:33:54 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 15:19:20 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:16:10 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,20 @@ void	init_all(mlx_t	*mlx, t_txt *textures)
 	data->tiles = ft_calloc(1, sizeof(t_tile));
 	if (!data->tiles)
 		ft_error("allocation error");
-	while (i < MAX_ZOMBIES)
+	while (++i < MAX_ZOMBIES)
 	{
 		data->zombie_facing[i] = -1;
+		data->zombie[i].x = -1;
 		i++;
 	}
 	data->tiles_old = NULL;
 	data->rdm_key = RANDOM_SEED;
-	printf("Initialising DONE\n");
 }
 
 void	ult_free(t_data *data)
 {
 	un_render(data->mlx, data->tiles);
 	un_render(data->mlx, data->tiles_old);
-	ft_free(data->textures);
-	ft_free(data->map_path);
 	ft_free(data->tiles);
-	ft_free(data->tiles_old);
 	ft_free(data);
 }

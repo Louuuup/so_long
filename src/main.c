@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:10:53 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 14:47:36 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:06:46 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	data = get_data();
-	mlx = mlx_init(WIDTH, HEIGHT, "Epic Game OMG ITS SO COOOL v0.04", true);
+	mlx = mlx_init(WIDTH, HEIGHT, "SO_LONG by YakaryLoup", true);
 	if (!mlx)
 		ft_error_mlx();
-	init_all(mlx, &textures);
 	args_handler(data, argc, argv);
+	init_all(mlx, &textures);
 	texture_handler(mlx, &textures, data->tiles);
 	parse_main(mlx, data->tiles);
 	map_legal(data, data->map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakary <yakary@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:58:02 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/03/14 15:16:48 by yakary           ###   ########.fr       */
+/*   Updated: 2023/08/14 16:23:35 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			*(--x) = *(--y);
 	}
 	else
-	{		
+	{
 		while (len--)
 			*x++ = *y++;
 	}

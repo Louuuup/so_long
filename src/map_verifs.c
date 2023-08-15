@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:10:21 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/11 15:29:22 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:22:19 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ static void	map_possible(t_data *data)
 	keys = char_count(KEY, data->map);
 	player = where_is(0, PLAYER, data->map);
 	flood_clean(data);
-	flood_fill(data, player.x, player.y, 1);
+	flood_fill_z(data, player.x, player.y, 1);
 	while (i < keys)
 	{
 		co = where_is(i, KEY, data->map);
-		if (!data->distance_map[co.y][co.x])
+		if (!data->dst_map[co.y][co.x])
 			ft_error("Key unreachable");
 		i++;
 	}
 	co = where_is(0, PORTAL, data->map);
-	if (!data->distance_map[co.y][co.x])
+	if (!data->dst_map[co.y][co.x])
 		ft_error("Exit unreachable");
 }
 

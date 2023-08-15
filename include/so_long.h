@@ -6,7 +6,7 @@
 /*   By: ycyr-roy <ycyr-roy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:48:03 by ycyr-roy          #+#    #+#             */
-/*   Updated: 2023/08/14 16:10:05 by ycyr-roy         ###   ########.fr       */
+/*   Updated: 2023/08/15 11:22:07 by ycyr-roy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ void			world_events(t_data *data);
 *@return		your mom
 */
 void			flood_fill(t_data *data, int x, int y, int distance);
+void			flood_fill_z(t_data *data, int x, int y, int distance);
 t_co			where_is(int skip, char c, char map[][MAX_TILES_X]);
 int				char_count(char c, char arr[][MAX_TILES_X]);
 void			print_flood(t_data *data);
