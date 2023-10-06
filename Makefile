@@ -79,6 +79,8 @@ mlx42:
 	@cmake -S $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 	@echo "$(GREEN)$(BOLD)✅ Successfully compiled $(PURPLE)MLX42$(RESET)"
 	@printf $(UP)$(CUT)
+bonus: all
+	@echo "\n🤯YOO THEY ASKED FOR BONUS OMG🤯\n"
 clean:
 	@$(RM) $(OBJS)
 	@$(RM_DIR) $(BIN_DIR)
@@ -89,7 +91,7 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@echo "$(GREEN)$(BOLD)✅ Fully cleaned $(YELLOW)SO_LONG$(RESET)"
 re: fclean all
-.PHONY: all clean fclean re libft mlx42
+.PHONY: all clean fclean re libft mlx42 bonus
 #=====================================COLORS=====================================#
 # Colors
 BLACK		=\033[30m
